@@ -1,3 +1,4 @@
+/home/machin/tt/my-starter-project/src/main/java/c/p/m/ui/v/profile/Login.java
 /home/machin/tt/my-starter-project/src/main/java/com/packagename/myapp/backend/CategoryService.java
 /home/machin/tt/my-starter-project/src/main/java/com/packagename/myapp/ui/common/AbstractEditorDialog.java
 /home/machin/tt/my-starter-project/src/main/java/com/packagename/myapp/backend/ReviewService.java
@@ -11,4 +12,5 @@
 /home/machin/tt/my-starter-project/src/main/java/com/packagename/myapp/backend/Category.java
 /home/machin/tt/my-starter-project/src/main/java/com/packagename/myapp/ui/views/reviewslist/ReviewEditorDialog.java
 /home/machin/tt/my-starter-project/src/main/java/com/packagename/myapp/backend/Review.java
+/home/machin/tt/my-starter-project/src/main/java/c/p/m/ui/v/profile/Profile.java
 /home/machin/tt/my-starter-project/src/main/java/com/packagename/myapp/ui/views/categorieslist/CategoriesList.java

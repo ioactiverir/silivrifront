@@ -44,41 +44,41 @@ public class MainLayout extends Div
 
     public MainLayout() {
 
-        H1 title = new H1("Suprise!");
-        title.addClassName("main-layout__title");
+        int i=0;
+        if (i==1) {
+            H1 title = new H1("Suprise!");
+            title.addClassName("main-layout__title");
+
+            RouterLink reviews = new RouterLink(null, ReviewsList.class);
+            reviews.add(new Icon(VaadinIcon.LIST), new Text("Reviews"));
+            reviews.addClassName("main-layout__nav-item");
+            // Only show as active for the exact URL, but not for sub paths
+            reviews.setHighlightCondition(HighlightConditions.sameLocation());
+
+            RouterLink categories = new RouterLink(null, CategoriesList.class);
+            categories.add(new Icon(VaadinIcon.ARCHIVES), new Text("Categories"));
+            categories.addClassName("main-layout__nav-item");
 
 
+            RouterLink profile = new RouterLink(null, Profile.class);
+            profile.add(new Icon(VaadinIcon.USER), new Text("Profile"));
+            profile.addClassName("main-layout__nav-item");
+
+            RouterLink login = new RouterLink(null, Login.class);
+            login.add(new Icon(VaadinIcon.SIGN_IN), new Text("Login"));
+            login.addClassName("main-layout__nav-item");
 
 
-        RouterLink reviews = new RouterLink(null, ReviewsList.class);
-        reviews.add(new Icon(VaadinIcon.LIST), new Text("Reviews"));
-        reviews.addClassName("main-layout__nav-item");
-        // Only show as active for the exact URL, but not for sub paths
-        reviews.setHighlightCondition(HighlightConditions.sameLocation());
+            Div navigation = new Div(reviews, categories, profile, login);
+            navigation.addClassName("main-layout__nav");
 
-        RouterLink categories = new RouterLink(null, CategoriesList.class);
-        categories.add(new Icon(VaadinIcon.ARCHIVES), new Text("Categories"));
-        categories.addClassName("main-layout__nav-item");
+            Div header = new Div(title, navigation);
+            header.addClassName("main-layout__header");
+            add(header);
 
+            addClassName("main-layout");
+        }
 
-        RouterLink profile = new RouterLink(null, Profile.class);
-        profile.add(new Icon(VaadinIcon.USER), new Text("Profile"));
-        profile.addClassName("main-layout__nav-item");
-
-        RouterLink login = new RouterLink(null, Login.class);
-        login.add(new Icon(VaadinIcon.SIGN_IN), new Text("Login"));
-        login.addClassName("main-layout__nav-item");
-
-
-
-        Div navigation = new Div(reviews,categories,profile,login);
-        navigation.addClassName("main-layout__nav");
-
-        Div header = new Div(title, navigation);
-        header.addClassName("main-layout__header");
-        add(header);
-
-        addClassName("main-layout");
     }
 
     @Override

@@ -15,6 +15,7 @@ com/packagename/myapp/ui/common/AbstractEditorDialog$Operation.class
 com/packagename/myapp/ui/encoders/LongToStringEncoder.class
 com/packagename/myapp/ui/views/reviewslist/ReviewsList.class
 com/packagename/myapp/backend/CategoryService$1.class
+c/p/m/ui/v/profile/MyApp.class
 com/packagename/myapp/ui/common/AbstractEditorDialog.class
 com/packagename/myapp/backend/Review.class
 com/packagename/myapp/backend/ReviewService$SingletonHolder.class

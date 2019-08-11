@@ -11,7 +11,7 @@ import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.packagename.myapp.ui.encoders.LocalDateToStringEncoder;
+import front.LocalDateToStringEncoder;
 
 /**
  * Simple backend service to store and retrieve {@link Review} instances.

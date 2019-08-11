@@ -8,6 +8,7 @@
 /home/machin/tt/my-starter-project/src/main/java/front/AbstractEditorDialog.java
 /home/machin/tt/my-starter-project/src/main/java/core/Cache/cache.java
 /home/machin/tt/my-starter-project/src/main/java/front/CategoryEditorDialog.java
+/home/machin/tt/my-starter-project/src/main/java/core/Game/Surprise.java
 /home/machin/tt/my-starter-project/src/main/java/core/responseType.java
 /home/machin/tt/my-starter-project/src/main/java/core/IAM/authFunction.java
 /home/machin/tt/my-starter-project/src/main/java/front/HellowWorld.java
@@ -20,11 +21,13 @@
 /home/machin/tt/my-starter-project/src/main/java/com/packagename/myapp/backend/CategoryService.java
 /home/machin/tt/my-starter-project/src/main/java/front/LocalDateToStringEncoder.java
 /home/machin/tt/my-starter-project/src/main/java/com/packagename/myapp/backend/ReviewService.java
+/home/machin/tt/my-starter-project/src/main/java/front/Magic.java
 /home/machin/tt/my-starter-project/src/main/java/core/Utility.java
 /home/machin/tt/my-starter-project/src/main/java/front/CategoriesList.java
 /home/machin/tt/my-starter-project/src/main/java/core/service.java
 /home/machin/tt/my-starter-project/src/main/java/core/userInfo.java
 /home/machin/tt/my-starter-project/src/main/java/front/ConfirmationDialog.java
 /home/machin/tt/my-starter-project/src/main/java/com/packagename/myapp/backend/Category.java
+/home/machin/tt/my-starter-project/src/main/java/core/Game/QueezMaker.java
 /home/machin/tt/my-starter-project/src/main/java/core/IAM/sessionManager.java
 /home/machin/tt/my-starter-project/src/main/java/com/packagename/myapp/backend/Review.java

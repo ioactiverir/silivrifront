@@ -29,7 +29,6 @@ import java.io.File;
 @HtmlImport("frontend://styles/shared-styles.html")
 @Viewport("width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
 @JavaScript("frontend://src/javascripts/pageUtils.js")
-@HtmlImport("frontend://src/html/main-page.html")
 
 public class MainPage extends Div {
     private static Logger logger = LogManager.getLogger(MainPage.class);
@@ -38,14 +37,14 @@ public class MainPage extends Div {
 
 
         //core.IAM.authFunction.validateAuthKey();
-        H1 title = new H1("Suprise!");
+        H1 title = new H1("");
         title.addClassName("main-layout__title");
 
-        RouterLink reviews = new RouterLink(null, ReviewsList.class);
-        reviews.add(new Icon(VaadinIcon.MAGIC), new Text("New"));
-        reviews.addClassName("main-layout__nav-item");
+        RouterLink magic = new RouterLink(null,Magic.class);
+        magic.add(new Icon(VaadinIcon.MAGIC), new Text("New"));
+        magic.addClassName("main-layout__nav-item");
         // Only show as active for the exact URL, but not for sub paths
-        reviews.setHighlightCondition(HighlightConditions.sameLocation());
+        magic.setHighlightCondition(HighlightConditions.sameLocation());
 
         RouterLink categories = new RouterLink(null, CategoriesList.class);
         categories.add(new Icon(VaadinIcon.CASH), new Text("Money"));
@@ -62,62 +61,12 @@ public class MainPage extends Div {
         login.addClassName("main-layout__nav-item");
 
 
-        Div navigation = new Div(reviews, categories, profile, login);
+        Div navigation = new Div(magic, categories, profile, login);
         navigation.addClassName("main-layout__nav");
 
         Div header = new Div(title, navigation);
         header.addClassName("main-layout__header");
         add(header);
-
-        Surprise wizard = new Surprise();
-        Response res = wizard.getSurprise();
-        String wType = res.getRespType();
-        Label UI_TYPE_LABLE = new Label("");
-        Label UI_SUBJECT_LABLE = new Label("");
-        switch (res.getRespType()) {
-            case "TEXT":
-                UI_TYPE_LABLE.setText(res.getRespType());
-                UI_SUBJECT_LABLE.setText(res.getRespText());
-                add(UI_TYPE_LABLE, UI_SUBJECT_LABLE);
-                break;
-            case "QUIZ":
-                UI_TYPE_LABLE.setText(res.getRespType());
-                UI_SUBJECT_LABLE.setText(res.getRespText());
-                add(UI_TYPE_LABLE, UI_SUBJECT_LABLE);
-                // fixme define full repsonse that contain everting
-                // e.g coverage quiz, video, audio, etc. full
-                break;
-
-
-            case "VIDEO":
-                String mediaLink= res.getRespMediaLink();
-                Html videoPlay=new Html("<video id='vv' width='320' height='240' autoplay><source src='"+mediaLink+"' type='video/mp4'></video>");
-                add(videoPlay);
-                Page page= UI.getCurrent().getPage();
-                page.executeJavaScript("var vid = document.getElementById('vv');  vid.play();");
-                break;
-
-
-            case "AUDIO":
-                logger.info("Starting audio");
-                String audioLink="";
-                Image musicImage = new Image("frontend\\src\\img\\music.png", res.getRespText());
-                musicImage.setWidth(String.valueOf(5));
-                musicImage.setHeight(String.valueOf(5));
-                Html audioPlay=new Html("<audio id='myAudio'><source src='frontend\\src\\audio\\1.mp3' type='audio/mpeg'></audio>");
-                add(musicImage, audioPlay);
-                Page page2= UI.getCurrent().getPage();
-                page2.executeJavaScript("var x = document.getElementById('myAudio'); x.play();");
-                break;
-
-            case "IMAGE":
-                Image image = new Image(res.getRespMediaLink(), res.getRespText());
-                add(image);
-                break;
-
-
-        }
-
 
         addClassName("main-layout");
 

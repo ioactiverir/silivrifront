@@ -35,6 +35,7 @@ core/Game/Surprise.class
 com/packagename/myapp/backend/ReviewService.class
 core/ServiceHandler.class
 com/packagename/myapp/backend/ReviewService$1.class
+front/Magic.class
 core/Utility.class
 front/MainLayout.class
 front/MainPage.class

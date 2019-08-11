@@ -27,11 +27,11 @@ public class Utility {
     }
 
     public static String getRandomImage() {
-        return "http://exmaple.com/IMG11111.jpg";
+        return "frontend/src/img/1.jpg";
     }
 
     public static String getRandomVideo() {
-        return "http://exmaple.com/vide00001.mp4";
+        return "frontend\\src\\video\\b.mp4";
     }
 
     public static String getRandomAudio() {

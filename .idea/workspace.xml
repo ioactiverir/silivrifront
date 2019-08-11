@@ -2,61 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7def833-4192-433c-9cdb-3e15362dfeb8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/Cache/cache.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/Game/QueezMaker.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/Game/Quezz.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/Game/Surprise.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/Game/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/IAM/authFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/IAM/sessionManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/Persisit/sqlCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/Response.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/Utility.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/raceObj.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/responseType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/service.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/core/userInfo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/front/HellowWorld.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/front/MainPage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/front/VerifyCode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/hibernate.cfg.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/log4j2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/html/profile.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/my_starter_project_war.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/my_starter_project_war_exploded.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_errorprone_error_prone_annotations_2_1_3.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_guava_guava_23_6_jre.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_j2objc_j2objc_annotations_1_1.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__net_bytebuddy_byte_buddy_1_9_13.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_checkerframework_checker_compat_qual_2_0_0.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_codehaus_mojo_animal_sniffer_annotations_1_14.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_javassist_javassist_3_18_1_GA.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/audio/1.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/html/wave.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/music.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/video/b.mp4" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_util_9_4_8_v20171121.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_eclipse_jetty_jetty_util_9_3_9_v20160517.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my-starter-project.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-starter-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/my-starter-project.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/c/p/m/ui/v/profile/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/c/p/m/ui/v/profile/MyApp.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/c/p/m/ui/v/profile/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/Profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/packagename/myapp/backend/ReviewService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/packagename/myapp/backend/ReviewService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/packagename/myapp/ui/MainLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/MainLayout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/packagename/myapp/ui/common/AbstractEditorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/AbstractEditorDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/packagename/myapp/ui/common/ConfirmationDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/ConfirmationDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/packagename/myapp/ui/encoders/LocalDateToStringEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/LocalDateToStringEncoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/packagename/myapp/ui/encoders/LongToStringEncoder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/LongToStringEncoder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/packagename/myapp/ui/views/categorieslist/CategoriesList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/CategoriesList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/packagename/myapp/ui/views/categorieslist/CategoryEditorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/CategoryEditorDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/packagename/myapp/ui/views/reviewslist/ReviewEditorDialog.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/ReviewEditorDialog.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/packagename/myapp/ui/views/reviewslist/ReviewsList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/ReviewsList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/frontend/src/views/reviewslist/callSendCode.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/html/callSendCode.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/frontend/src/views/reviewslist/callSendCode.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/javascripts/callSendCode.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/frontend/src/views/reviewslist/pageUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/javascripts/pageUtils.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/frontend/src/views/reviewslist/reviews-list.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/html/reviews-list.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/Game/QueezMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Game/QueezMaker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/Game/Surprise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Game/Surprise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Utility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/front/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/MainPage.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -77,8 +37,19 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
   <component name="ProjectId" id="1P6gcAijswWhqJosAqgz6yOu8N3" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -188,6 +159,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="com.vaadin.designer2.intellij.settings.SizePresetsSettingsComponent">
     <option name="sizePresets">

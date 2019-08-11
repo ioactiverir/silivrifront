@@ -7,10 +7,10 @@ import java.util.Random;
 public class QueezMaker {
     public Quezz queezBuidler() {
         Random rndQuezz = new Random();
-        int selectQuezz = rndQuezz.nextInt(3);
-        String resp[] = new String[2];
+        int selectQuezz = rndQuezz.nextInt(2);
+        String resp[];
         switch (selectQuezz) {
-            case 1:
+            case 0:
 
                 resp = Utility.generteQuezz(1);
                 Quezz simpleQuezz = new Quezz();
@@ -25,7 +25,7 @@ public class QueezMaker {
                 simpleQuezz.setQuezzOptions(resp[1]);
                 simpleQuezz.setQuezzCredit("1000");
                 return simpleQuezz;
-            case 2:
+            case 1:
                 resp = Utility.generteQuezz(2);
                 Quezz mediumQuezz = new Quezz();
                 mediumQuezz.setQuezzName("meduim");
@@ -40,7 +40,7 @@ public class QueezMaker {
                 mediumQuezz.setQuezzOptions(resp[1]);
                 mediumQuezz.setQuezzCredit("2000");
                 return mediumQuezz;
-            case 3:
+            case 2:
                 resp = Utility.generteQuezz(3);
                 Quezz complexQuezz = new Quezz();
                 complexQuezz.setQuezzName("complex");
@@ -55,7 +55,8 @@ public class QueezMaker {
                 complexQuezz.setQuezzCredit("3000");
                 return complexQuezz;
         }
-        return null;
-
+        //fuck!!!
+        Quezz nullQueez=new Quezz();
+        return nullQueez;
     }
 }

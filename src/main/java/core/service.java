@@ -440,7 +440,7 @@ public class service {
                                                 resp = Utility.generteQuezz(1);
                                                 Quezz simpleQuezz = new Quezz();
                                                 simpleQuezz.setQuezzName("simple");
-                                                simpleQuezz.setQuezzTime("5");
+                                                simpleQuezz.setQuezzTime(5);
                                                 simpleQuezz.setQuezzType("math");
                                                 if (!cache.userCredit.asMap().containsKey(userPhone)) {
                                                     logger.info("user {} playing free", userPhone);
@@ -455,7 +455,7 @@ public class service {
                                                 resp = Utility.generteQuezz(2);
                                                 Quezz mediumQuezz = new Quezz();
                                                 mediumQuezz.setQuezzName("meduim");
-                                                mediumQuezz.setQuezzTime("10");
+                                                mediumQuezz.setQuezzTime(10);
                                                 mediumQuezz.setQuezzType("math");
                                                 if (!cache.userCredit.asMap().containsKey(userPhone)) {
                                                     logger.info("user {} playing free", userPhone);
@@ -471,7 +471,7 @@ public class service {
                                                 resp = Utility.generteQuezz(3);
                                                 Quezz complexQuezz = new Quezz();
                                                 complexQuezz.setQuezzName("complex");
-                                                complexQuezz.setQuezzTime("15");
+                                                complexQuezz.setQuezzTime(15);
                                                 complexQuezz.setQuezzType("math");
                                                 if (!cache.userCredit.asMap().containsKey(userPhone)) {
                                                     logger.info("user {} playing free", userPhone);

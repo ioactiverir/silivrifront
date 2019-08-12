@@ -7,6 +7,15 @@ public class Response {
     private String respCharacterName; // who want to show response?
     private String respMessage;
 
+    public int getRespTime() {
+        return respTime;
+    }
+
+    public void setRespTime(int respTime) {
+        this.respTime = respTime;
+    }
+
+    private int respTime;
     public String getRespMessage() {
         return respMessage;
     }

@@ -29,9 +29,12 @@ public class Surprise {
                 break;
             case 1:
                 QueezMaker queezMaker=new QueezMaker();
+                Quezz qu=queezMaker.queezBuidler();
                 response.setRespType(responseType.RESPONSE_QUIZ);
-                response.setRespText(queezMaker.queezBuidler().getQuezzSubject());
+                response.setRespText(qu.getQuezzSubject());
                 response.setRespCharacterName(responseType.RESPONSE_CHARACTER_FERI);
+                response.setRespMessage(qu.getQuezzOptions());
+                response.setRespTime(qu.getQuezzTime());
                 response.setRespMediaLink("NULL");
                 break;
             case 2:

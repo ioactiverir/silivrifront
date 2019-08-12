@@ -4,6 +4,7 @@ import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.html.Div;
@@ -12,7 +13,6 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.page.Page;
-import com.vaadin.flow.component.page.Viewport;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -21,6 +21,10 @@ import core.Game.Surprise;
 import core.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.vaadin.erik.TimerBar;
+
+import java.awt.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Route(value = "magic", layout = MainLayout.class)
 @PageTitle("Profile Information")
@@ -38,7 +42,7 @@ public class Magic extends Div {
         H1 title = new H1("");
         title.addClassName("main-layout__title");
 
-        RouterLink magic = new RouterLink(null,MainPage.class);
+        RouterLink magic = new RouterLink(null, MainPage.class);
         magic.add(new Icon(VaadinIcon.MAGIC), new Text("Try!"));
         magic.addClassName("main-layout__nav-item");
         // Only show as active for the exact URL, but not for sub paths
@@ -72,43 +76,66 @@ public class Magic extends Div {
         String wType = res.getRespType();
         Label UI_TYPE_LABLE = new Label("");
         Label UI_SUBJECT_LABLE = new Label("");
+        Label Quiz_Answr_Options = new Label("");
         switch (res.getRespType()) {
+
+            case "QUIZ":
+
+                UI_TYPE_LABLE.setText(res.getRespType());
+                UI_SUBJECT_LABLE.setText(res.getRespText());
+                Quiz_Answr_Options.setText(res.getRespMessage());
+
+                // first split them, then make button and action
+                // based on the complexity get timer form response.
+                String optionQu[] = res.getRespMessage().split(",");
+
+                Button bt0 = new Button(optionQu[0]);
+                Button bt1 = new Button(optionQu[1]);
+                Button bt2 = new Button(optionQu[2]);
+
+                TimerBar timerBar = new TimerBar(res.getRespTime()*1000);
+                //the time is finished, then leave the page.
+                Page pageBar = UI.getCurrent().getPage();
+
+
+                timerBar.addTimerEndedListener(e -> {
+
+                    //fixme disable button now
+                    logger.warn("your exame finishded.");
+                });
+                add(UI_SUBJECT_LABLE,bt0, bt1, bt2,timerBar);
+                timerBar.start();
+                // fixme define full repsonse that contain everting
+                // e.g coverage quiz, video, audio, etc. full
+                break;
+
             case "TEXT":
                 UI_TYPE_LABLE.setText(res.getRespType());
                 UI_SUBJECT_LABLE.setText(res.getRespText());
                 add(UI_TYPE_LABLE, UI_SUBJECT_LABLE);
                 break;
 
-            case "QUIZ":
-                UI_TYPE_LABLE.setText(res.getRespType());
-                UI_SUBJECT_LABLE.setText(res.getRespText());
-                add(UI_TYPE_LABLE, UI_SUBJECT_LABLE);
-                // fixme define full repsonse that contain everting
-                // e.g coverage quiz, video, audio, etc. full
-                break;
-
-
             case "VIDEO":
-                String mediaLink= res.getRespMediaLink();
-                Html videoPlay=new Html("<video id='vv' width='320' height='240' autoplay><source src='"+mediaLink+"' type='video/mp4'></video>");
+                String mediaLink = res.getRespMediaLink();
+                Html videoPlay = new Html("<video id='vv' width='320' height='240' autoplay><source src='" + mediaLink + "' type='video/mp4'></video>");
                 add(videoPlay);
-                Page page= UI.getCurrent().getPage();
+                Page page = UI.getCurrent().getPage();
                 page.executeJavaScript("var vid = document.getElementById('vv');  vid.play();");
                 break;
 
 
             case "AUDIO":
                 logger.info("Starting audio");
-                String audioLink=res.getRespMediaLink();
-                Html musicImage=new Html("<img src='frontend\\src\\img\\music.jpeg' alt='Music'>");
-                Html audioPlay=new Html("<audio id='myAudio'><source src='"+audioLink+"' type='audio/mpeg'></audio>");
+                String audioLink = res.getRespMediaLink();
+                Html musicImage = new Html("<img src='frontend\\src\\img\\music.jpeg' alt='Music'>");
+                Html audioPlay = new Html("<audio id='myAudio'><source src='" + audioLink + "' type='audio/mpeg'></audio>");
                 add(musicImage, audioPlay);
-                Page page2= UI.getCurrent().getPage();
+                Page page2 = UI.getCurrent().getPage();
                 page2.executeJavaScript("var x = document.getElementById('myAudio'); x.play();");
                 break;
 
             case "IMAGE":
-                Html image=new Html("<img src='"+res.getRespMediaLink()+"' alt='Bingooo'>");
+                Html image = new Html("<img src='" + res.getRespMediaLink() + "' alt='Bingooo'>");
                 add(image);
                 break;
 

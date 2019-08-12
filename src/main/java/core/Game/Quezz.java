@@ -4,7 +4,7 @@ public class Quezz {
     private String quezzName;
     private String quezzType;
     private String quezzCredit;
-    private String quezzTime;
+    private int quezzTime;
     private String quezzSubject;
     private String quezzMessage;
 
@@ -60,11 +60,11 @@ public class Quezz {
         this.quezzCredit = quezzCredit;
     }
 
-    public String getQuezzTime() {
+    public int getQuezzTime() {
         return quezzTime;
     }
 
-    public void setQuezzTime(String quezzTime) {
+    public void setQuezzTime(int quezzTime) {
         this.quezzTime = quezzTime;
     }
 }

@@ -146,6 +146,14 @@
             <version>9.3.9.v20160517</version>
             <scope>compile</scope>
         </dependency>
+
+   <!-- vaadin-->
+        <dependency>
+            <groupId>org.vaadin.erik</groupId>
+            <artifactId>timer_bar</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>

@@ -2,13 +2,36 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7def833-4192-433c-9cdb-3e15362dfeb8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/front/Magic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/music.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_9_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_9_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_9_7.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_vaadin_13_0_11.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_vaadin_board_flow_2_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_vaadin_charts_flow_6_3_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_vaadin_confirm_dialog_flow_1_2_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_vaadin_crud_flow_1_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_vaadin_grid_pro_flow_1_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_vaadin_rich_text_editor_flow_1_0_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_webjar_vaadin_board_2_1_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_webjar_vaadin_charts_6_2_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_webjar_vaadin_confirm_dialog_1_1_1.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_webjar_vaadin_crud_1_0_5.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_webjar_vaadin_grid_pro_1_0_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_vaadin_webjar_vaadin_rich_text_editor_1_0_4.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_vaadin_erik_timer_bar_1_0_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_webjars_bowergithub_eriklumme_timer_bar_1_1_1.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my-starter-project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/my-starter-project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/Game/QueezMaker.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Game/QueezMaker.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/Game/Quezz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Game/Quezz.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/Game/Surprise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Game/Surprise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Response.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/core/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Utility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/service.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/front/Magic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/Magic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/front/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/frontend/src/javascripts/pageUtils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/javascripts/pageUtils.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

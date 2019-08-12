@@ -35,6 +35,8 @@ public class MainPage extends Div {
 
     public MainPage() throws Exception {
 
+        Page page = UI.getCurrent().getPage();
+        page.executeJavaScript("redirectLocation('magic')");
 
         //core.IAM.authFunction.validateAuthKey();
         H1 title = new H1("");
@@ -70,6 +72,8 @@ public class MainPage extends Div {
 
         addClassName("main-layout");
 
+//        Page page = UI.getCurrent().getPage();
+//        page.executeJavaScript("redirectLocation('magic')");
 
     }
 }

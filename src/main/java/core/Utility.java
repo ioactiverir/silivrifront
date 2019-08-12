@@ -29,7 +29,9 @@ public class Utility {
     }
 
     public static String getRandomImage() {
-        return "frontend/src/img/1.jpg";
+        Random ran=new Random();
+        int ranImgId=ran.nextInt(4);
+        return "frontend/src/img/"+ranImgId+".jpg";
     }
 
     public static String getRandomVideo() {

@@ -18,7 +18,6 @@ public class Surprise {
         /* Select random gift, then send to the user.*/
         Random rnd = new Random();
         int selectResp =4;// rnd.nextInt(5);
-        logger.info("selectResp value {}", selectResp);
         Response response = new Response();
         switch (selectResp) {
             case 0:

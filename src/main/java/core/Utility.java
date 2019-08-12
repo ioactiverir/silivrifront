@@ -5,6 +5,9 @@ import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.page.Page;
 import core.Cache.cache;
 
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
 import java.util.Random;
 public class Utility {
 
@@ -43,7 +46,17 @@ public class Utility {
     }
 
     public static String getRandomText() {
-        return "I am a random funny joke!";
+        //todo read data from DB and load in cache has been initialized during service startup
+        Random rnd=new Random();
+        int getRnadomContent=rnd.nextInt(2);
+        List textList=new ArrayList();
+        textList.add("2KjYp9mE2KfYqtixINin2LIg2LPYsdi52Kog2YbZiNixINmF24zYr9mI2YbbjCDahtuM2Ycg2J8K2LPYsdi52Kog2KzZhdi5INmIINis2YjYsSDZg9ix2K/ZhiDYrtmI2YbZhyDYr9ixINmF2YjYp9is2YfZhyDYqNinINmF2YfZhdin2YYg2LPYsdiy2K/ZhyA6KSk=");
+        textList.add("2KjZhyDYr9mI2LPYqtmFINmF24wg2q/ZhSDaqduM2YEg2b7ZiNmE2Kog2obZgtiv2LEg2YLYtNmG2q/ZhwrZhduMINqv2Ycg2obYsdmFINmF2LTZh9ivINi52YXZiNmFINin2LIg2KLZhNmF2KfZhiDYqNix2KfZhSDYotmI2LHYr9mHIQ==");
+        textList.add("2KfYsiDZhdin2K/Ysdio2LLYsdqv2YUg2YXbjNm+2LHYs9mFINi02YXYpyDYqNiy2LHar9iq2LHbjNmGINuM2Kcg2K7Yp9mE2Ycg2KjYstix2q8K2YXbjNqv2Ycg2KfYsiDZhti42LEg2LPZhiDZhduM2q/bjCDYnwrZviDZhiDZviDYp9iyINmG2LjYsSDZgtivINmIINmI2LLZhiDZiCDZhduM2LLYp9mGINqp2YTYs9iq2LHZiNmEINiu2YjZhiDZhduM2q/ZhQ==");
+        String decodedString;
+        byte[] decodedBytes = Base64.getDecoder().decode((String) textList.get(getRnadomContent));
+        decodedString = new String(decodedBytes);
+        return decodedString;
     }
 
     public static int getUserCreditValue(String userId) throws NullPointerException {

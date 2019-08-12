@@ -39,6 +39,7 @@ public class MainPage extends Div {
         page.executeJavaScript("redirectLocation('magic')");
 
         //core.IAM.authFunction.validateAuthKey();
+//        H1 title = new H1("Surfriz!");
         H1 title = new H1("");
         title.addClassName("main-layout__title");
 

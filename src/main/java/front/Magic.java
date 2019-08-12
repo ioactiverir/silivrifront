@@ -5,6 +5,7 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.charts.model.Responsive;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.html.Div;
@@ -39,6 +40,7 @@ public class Magic extends Div {
 
 
         //core.IAM.authFunction.validateAuthKey();
+//        H1 title = new H1("Surfriz!");
         H1 title = new H1("");
         title.addClassName("main-layout__title");
 
@@ -80,44 +82,43 @@ public class Magic extends Div {
         switch (res.getRespType()) {
 
             case "QUIZ":
-
+                logger.info("response QUIZ");
                 UI_TYPE_LABLE.setText(res.getRespType());
                 UI_SUBJECT_LABLE.setText(res.getRespText());
                 Quiz_Answr_Options.setText(res.getRespMessage());
-
-                // first split them, then make button and action
-                // based on the complexity get timer form response.
                 String optionQu[] = res.getRespMessage().split(",");
 
-                Button bt0 = new Button(optionQu[0]);
-                Button bt1 = new Button(optionQu[1]);
-                Button bt2 = new Button(optionQu[2]);
+                Html quizBody = new Html("<div><h3 style='text-align: center;'>" + res.getRespText() + "<br />\n" +
+                        "<input name='A1' class='buttonGreen'  type='button' value='" + optionQu[0] + "' /><br />\n" +
+                        "<input name='A2' class='buttonBlue'  type='button' value='" + optionQu[1] + "' /><br />\n" +
+                        "<input name='A3' class='buttonRed'  type='button' value='" + optionQu[2] + "' /></h3></div>");
 
-                TimerBar timerBar = new TimerBar(res.getRespTime()*1000);
+                TimerBar timerBar = new TimerBar(res.getRespTime() * 1000);
                 //the time is finished, then leave the page.
                 Page pageBar = UI.getCurrent().getPage();
-
-
                 timerBar.addTimerEndedListener(e -> {
-
                     //fixme disable button now
                     logger.warn("your exame finishded.");
                 });
-                add(UI_SUBJECT_LABLE,bt0, bt1, bt2,timerBar);
+                add(quizBody, timerBar);
                 timerBar.start();
                 // fixme define full repsonse that contain everting
                 // e.g coverage quiz, video, audio, etc. full
                 break;
 
             case "TEXT":
+                logger.info("response TEXT");
                 UI_TYPE_LABLE.setText(res.getRespType());
                 UI_SUBJECT_LABLE.setText(res.getRespText());
-                add(UI_TYPE_LABLE, UI_SUBJECT_LABLE);
+                Html textBody=new Html("<h2 dir='rtl' style='text-align: center;'><br />\n" +
+                        "<br />"+res.getRespText()+"</h2>");
+                add(textBody);
                 break;
 
             case "VIDEO":
+                logger.info("response VIDEO");
                 String mediaLink = res.getRespMediaLink();
-                Html videoPlay = new Html("<video id='vv' width='320' height='240' autoplay><source src='" + mediaLink + "' type='video/mp4'></video>");
+                Html videoPlay = new Html("<div><video class='center' id='vv' width='320' height='240' autoplay><source src='" + mediaLink + "' type='video/mp4'></video></div>");
                 add(videoPlay);
                 Page page = UI.getCurrent().getPage();
                 page.executeJavaScript("var vid = document.getElementById('vv');  vid.play();");
@@ -125,9 +126,9 @@ public class Magic extends Div {
 
 
             case "AUDIO":
-                logger.info("Starting audio");
+                logger.info("response AUDIO");
                 String audioLink = res.getRespMediaLink();
-                Html musicImage = new Html("<img src='frontend\\src\\img\\music.jpeg' alt='Music'>");
+                Html musicImage = new Html("<div><img src='frontend\\src\\img\\music.jpeg' alt='Music'></div>");
                 Html audioPlay = new Html("<audio id='myAudio'><source src='" + audioLink + "' type='audio/mpeg'></audio>");
                 add(musicImage, audioPlay);
                 Page page2 = UI.getCurrent().getPage();
@@ -135,7 +136,8 @@ public class Magic extends Div {
                 break;
 
             case "IMAGE":
-                Html image = new Html("<img src='" + res.getRespMediaLink() + "' alt='Bingooo'>");
+                logger.info("response IAMGE");
+                Html image = new Html("<div><img src='" + res.getRespMediaLink() + "' alt='Bingooo'></div>");
                 add(image);
                 break;
 

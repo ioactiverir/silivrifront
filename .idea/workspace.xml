@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7def833-4192-433c-9cdb-3e15362dfeb8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/0.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/2.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/3.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/4.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/core/Game/Surprise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Game/Surprise.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/core/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Utility.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/1.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/1.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/front/Magic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/Magic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/front/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/frontend/styles/shared-styles.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/frontend/styles/shared-styles.html" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

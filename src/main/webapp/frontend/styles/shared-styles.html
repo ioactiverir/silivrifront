@@ -42,6 +42,8 @@
             .view-container {
                 flex: auto;
             }
+
+
         </style>
     </template>
 </dom-module>
@@ -59,6 +61,43 @@
             overflow-x: hidden;
             background-color: var(--lumo-contrast-5pct);
         }
+        /* by khalegh */
+        img {
+              width: 100%;
+              height: auto;
+        }
+        .buttonGreen {
+          background-color: #4CAF50; /* Green */
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+        }
+         .buttonBlue {
+          background-color: #008CBA; /* Blue */
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+        }
+         .buttonRed {
+          background-color: #f44336; /* Red */
+          border: none;
+          color: white;
+          padding: 15px 32px;
+          text-align: center;
+          text-decoration: none;
+          display: inline-block;
+          font-size: 16px;
+        }
+    .center {
+     margin: 0 auto; width: 400px; }
 
         .main-layout {
             display: flex;
@@ -135,13 +174,14 @@
             color: var(--lumo-primary-text-color);
             cursor: default;
         }
-
         .main-layout__nav-item iron-icon {
             /* Vaadin icons are using a 16x16 grid */
             padding: 4px;
             box-sizing: border-box;
             pointer-events: none;
         }
+
+
     </style>
 
     <dom-module id="my-dialog-styles" theme-for="vaadin-dialog-overlay">
@@ -194,6 +234,8 @@
                     color: var(--lumo-secondary-text-color);
                     font-size: var(--lumo-font-size-s);
                 }
+
+
             </style>
         </template>
     </dom-module>

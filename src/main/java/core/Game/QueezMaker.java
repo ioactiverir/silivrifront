@@ -23,6 +23,7 @@ public class QueezMaker {
 //                        }
                 simpleQuezz.setQuezzSubject(resp[0]);
                 simpleQuezz.setQuezzOptions(resp[1]);
+                simpleQuezz.setQuezzResult(resp[2]);
                 simpleQuezz.setQuezzCredit("1000");
                 return simpleQuezz;
             case 1:
@@ -38,6 +39,7 @@ public class QueezMaker {
 
                 mediumQuezz.setQuezzSubject(resp[0]);
                 mediumQuezz.setQuezzOptions(resp[1]);
+                mediumQuezz.setQuezzResult(resp[2]);
                 mediumQuezz.setQuezzCredit("2000");
                 return mediumQuezz;
             case 2:
@@ -52,11 +54,12 @@ public class QueezMaker {
 //                        }
                 complexQuezz.setQuezzSubject(resp[0]);
                 complexQuezz.setQuezzOptions(resp[1]);
+                complexQuezz.setQuezzResult(resp[2]);
                 complexQuezz.setQuezzCredit("3000");
                 return complexQuezz;
         }
         //fuck!!!
-        Quezz nullQueez=new Quezz();
+        Quezz nullQueez = new Quezz();
         return nullQueez;
     }
 }

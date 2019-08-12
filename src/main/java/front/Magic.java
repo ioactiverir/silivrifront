@@ -1,9 +1,7 @@
 package front;
 
-import com.vaadin.flow.component.Html;
-import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.Text;
-import com.vaadin.flow.component.UI;
+import com.helger.commons.lang.priviledged.IPrivilegedAction;
+import com.vaadin.flow.component.*;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.charts.model.Responsive;
 import com.vaadin.flow.component.dependency.HtmlImport;
@@ -14,6 +12,7 @@ import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.page.Page;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -87,31 +86,80 @@ public class Magic extends Div {
                 UI_SUBJECT_LABLE.setText(res.getRespText());
                 Quiz_Answr_Options.setText(res.getRespMessage());
                 String optionQu[] = res.getRespMessage().split(",");
-
-                Html quizBody = new Html("<div><h3 style='text-align: center;'>" + res.getRespText() + "<br />\n" +
-                        "<input name='A1' class='buttonGreen'  type='button' value='" + optionQu[0] + "' /><br />\n" +
-                        "<input name='A2' class='buttonBlue'  type='button' value='" + optionQu[1] + "' /><br />\n" +
-                        "<input name='A3' class='buttonRed'  type='button' value='" + optionQu[2] + "' /></h3></div>");
-
                 TimerBar timerBar = new TimerBar(res.getRespTime() * 1000);
-                //the time is finished, then leave the page.
-                Page pageBar = UI.getCurrent().getPage();
+
+                setText(res.getRespText());
+                String qres = res.getQuezzRes();
+                logger.info("example valid answer is a {}", qres);
                 timerBar.addTimerEndedListener(e -> {
-                    //fixme disable button now
                     logger.warn("your exame finishded.");
+                }); //fixme leave page or revoke quiz
+                Button answer0 = new Button(optionQu[0]);
+                Page page = UI.getCurrent().getPage();
+                answer0.addClickListener(buttonClickEvent -> {
+                    logger.info("buttom getText {}", answer0.getText());
+                    if (answer0.getText().equals(qres)) {
+                        logger.info("Answer is OK.");
+                        //add balance, show messgage and go back main page
+
+                        page.executeJavaScript("alert('You win!')");
+                        page.executeJavaScript("redirectLocation('magic')");
+
+                    } else {
+                        page.executeJavaScript("alert('You lost!')");
+                        page.executeJavaScript("redirectLocation('magic')");
+
+                        logger.info("Answer is not valid.");
+
+                    }
                 });
-                add(quizBody, timerBar);
+
+                Button answer1 = new Button(optionQu[1]);
+                answer1.addClickListener(buttonClickEvent -> {
+                    logger.info("buttom getText {}", answer1.getText());
+                    if (answer1.getText().equals(qres)) {
+                        logger.info("Answer is OK.");
+
+                        page.executeJavaScript("alert('You win!')");
+                        page.executeJavaScript("redirectLocation('magic')");
+
+                    } else {
+                        page.executeJavaScript("alert('You lost!')");
+                        page.executeJavaScript("redirectLocation('magic')");
+                        logger.info("Answer is not valid.");
+
+                    }
+                });
+
+                Button answer2 = new Button(optionQu[2]);
+                answer2.addClickListener(buttonClickEvent -> {
+                    logger.info("buttom getText {}", answer2.getText());
+                    if (answer2.getText().equals(qres)) {
+                        logger.info("Answer is OK.");
+
+                        page.executeJavaScript("alert('You win!')");
+                        page.executeJavaScript("redirectLocation('magic')");
+
+                    } else {
+                        page.executeJavaScript("alert('You lost!')");
+                        page.executeJavaScript("redirectLocation('magic')");
+                        logger.info("Answer is not valid.");
+
+                    }
+                });
+
+
+                add(answer0,answer1,answer2, timerBar);
                 timerBar.start();
-                // fixme define full repsonse that contain everting
-                // e.g coverage quiz, video, audio, etc. full
                 break;
+
 
             case "TEXT":
                 logger.info("response TEXT");
                 UI_TYPE_LABLE.setText(res.getRespType());
                 UI_SUBJECT_LABLE.setText(res.getRespText());
-                Html textBody=new Html("<h2 dir='rtl' style='text-align: center;'><br />\n" +
-                        "<br />"+res.getRespText()+"</h2>");
+                Html textBody = new Html("<h2 dir='rtl' style='text-align: center;'><br />\n" +
+                        "<br />" + res.getRespText() + "</h2>");
                 add(textBody);
                 break;
 
@@ -120,7 +168,7 @@ public class Magic extends Div {
                 String mediaLink = res.getRespMediaLink();
                 Html videoPlay = new Html("<div><video class='center' id='vv' width='320' height='240' autoplay><source src='" + mediaLink + "' type='video/mp4'></video></div>");
                 add(videoPlay);
-                Page page = UI.getCurrent().getPage();
+                page = UI.getCurrent().getPage();
                 page.executeJavaScript("var vid = document.getElementById('vv');  vid.play();");
                 break;
 

@@ -53,6 +53,8 @@ public class Utility {
         textList.add("2KjYp9mE2KfYqtixINin2LIg2LPYsdi52Kog2YbZiNixINmF24zYr9mI2YbbjCDahtuM2Ycg2J8K2LPYsdi52Kog2KzZhdi5INmIINis2YjYsSDZg9ix2K/ZhiDYrtmI2YbZhyDYr9ixINmF2YjYp9is2YfZhyDYqNinINmF2YfZhdin2YYg2LPYsdiy2K/ZhyA6KSk=");
         textList.add("2KjZhyDYr9mI2LPYqtmFINmF24wg2q/ZhSDaqduM2YEg2b7ZiNmE2Kog2obZgtiv2LEg2YLYtNmG2q/ZhwrZhduMINqv2Ycg2obYsdmFINmF2LTZh9ivINi52YXZiNmFINin2LIg2KLZhNmF2KfZhiDYqNix2KfZhSDYotmI2LHYr9mHIQ==");
         textList.add("2KfYsiDZhdin2K/Ysdio2LLYsdqv2YUg2YXbjNm+2LHYs9mFINi02YXYpyDYqNiy2LHar9iq2LHbjNmGINuM2Kcg2K7Yp9mE2Ycg2KjYstix2q8K2YXbjNqv2Ycg2KfYsiDZhti42LEg2LPZhiDZhduM2q/bjCDYnwrZviDZhiDZviDYp9iyINmG2LjYsSDZgtivINmIINmI2LLZhiDZiCDZhduM2LLYp9mGINqp2YTYs9iq2LHZiNmEINiu2YjZhiDZhduM2q/ZhQ==");
+        textList.add("2LfYqNmCINiq2K3ZgtuM2YLYp9iqINmF2YYg2YXZh9mF2KrYsduM2YYg2LnYp9mF2YQg2LfZhNin2YIg2KfYstiv2YjYp9is2YchCg==");
+
         String decodedString;
         byte[] decodedBytes = Base64.getDecoder().decode((String) textList.get(getRnadomContent));
         decodedString = new String(decodedBytes);
@@ -65,7 +67,7 @@ public class Utility {
     }
 
     public static String[] generteQuezz(int quezzComplexity) {
-        String result[] = new String[2];
+        String result[] = new String[3];
         Random digit = new Random();
         Random r = new Random();
         int n1 = 0;
@@ -107,6 +109,7 @@ public class Utility {
 
         result[0] = subject;
         result[1] = list[r.nextInt(list.length)];
+        result[2]= String.valueOf(realResp);
         return result;
 
     }

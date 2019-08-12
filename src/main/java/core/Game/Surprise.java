@@ -17,7 +17,7 @@ public class Surprise {
     public Response getSurprise() {
         /* Select random gift, then send to the user.*/
         Random rnd = new Random();
-        int selectResp =4;// rnd.nextInt(5);
+        int selectResp =rnd.nextInt(5);
         Response response = new Response();
         switch (selectResp) {
             case 0:
@@ -34,6 +34,7 @@ public class Surprise {
                 response.setRespCharacterName(responseType.RESPONSE_CHARACTER_FERI);
                 response.setRespMessage(qu.getQuezzOptions());
                 response.setRespTime(qu.getQuezzTime());
+                response.setQuezzRes(qu.getQuezzResult());
                 response.setRespMediaLink("NULL");
                 break;
             case 2:

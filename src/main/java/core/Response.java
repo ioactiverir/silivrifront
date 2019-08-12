@@ -7,6 +7,16 @@ public class Response {
     private String respCharacterName; // who want to show response?
     private String respMessage;
 
+    public String getQuezzRes() {
+        return quezzRes;
+    }
+
+    public void setQuezzRes(String quezzRes) {
+        this.quezzRes = quezzRes;
+    }
+
+    private String quezzRes;
+
     public int getRespTime() {
         return respTime;
     }

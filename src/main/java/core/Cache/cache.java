@@ -58,4 +58,25 @@ public class cache {
                 }
             });
 
+
+    // map of view count, mediaID,viewCount
+    public static final  LoadingCache<Long, Long> viewCount = CacheBuilder.newBuilder()
+            .build(new CacheLoader<Long, Long>() {
+
+                @Override
+                public Long load(Long aLong) throws Exception {
+                    return null;
+                }
+            });
+    // map of mediaID, media source
+    public static final  LoadingCache<Long,String> mediaLocation = CacheBuilder.newBuilder()
+            .build(new CacheLoader<Long,String>() {
+
+                @Override
+                public String load(Long aLong) throws Exception {
+                    return null;
+                }
+            });
+
+
 }

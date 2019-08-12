@@ -2,6 +2,7 @@ package front;
 
 import com.helger.commons.lang.priviledged.IPrivilegedAction;
 import com.vaadin.flow.component.*;
+import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.charts.model.Responsive;
 import com.vaadin.flow.component.dependency.HtmlImport;
@@ -11,19 +12,26 @@ import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.Page;
+import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
+import core.Cache.cache;
 import core.Game.Surprise;
 import core.Response;
+import core.responseType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.vaadin.erik.TimerBar;
 
 import java.awt.*;
+import java.util.Random;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Route(value = "magic", layout = MainLayout.class)
@@ -32,7 +40,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @JavaScript("frontend://src/javascripts/pageUtils.js")
 @Tag("magic")
 
-public class Magic extends Div {
+public class Magic extends VerticalLayout {
     private static Logger logger = LogManager.getLogger(MainPage.class);
 
     public Magic() {
@@ -59,6 +67,12 @@ public class Magic extends Div {
         profile.addClassName("main-layout__nav-item");
 
 
+        RouterLink register = new RouterLink(null, Register.class);
+        register.add(new Icon(VaadinIcon.USER), new Text("Register"));
+        register.addClassName("main-layout__nav-item");
+
+
+
         RouterLink login = new RouterLink(null, Login.class);
         login.add(new Icon(VaadinIcon.SIGN_OUT), new Text("Logout"));
         login.addClassName("main-layout__nav-item");
@@ -72,6 +86,7 @@ public class Magic extends Div {
         add(header);
         addClassName("main-layout");
 
+
         Surprise wizard = new Surprise();
         Response res = wizard.getSurprise();
         String wType = res.getRespType();
@@ -82,15 +97,17 @@ public class Magic extends Div {
 
             case "QUIZ":
                 logger.info("response QUIZ");
+
+
                 UI_TYPE_LABLE.setText(res.getRespType());
                 UI_SUBJECT_LABLE.setText(res.getRespText());
                 Quiz_Answr_Options.setText(res.getRespMessage());
                 String optionQu[] = res.getRespMessage().split(",");
                 TimerBar timerBar = new TimerBar(res.getRespTime() * 1000);
-
-                setText(res.getRespText());
+                Html textBody = new Html("<h2 dir='ltr' style='text-align: center;'><br />\n" +
+                        "<br />" + res.getRespText() + "</h2>");
                 String qres = res.getQuezzRes();
-                logger.info("example valid answer is a {}", qres);
+                logger.info("Quiz valid answer is a {}", qres);
                 timerBar.addTimerEndedListener(e -> {
                     logger.warn("your exame finishded.");
                 }); //fixme leave page or revoke quiz
@@ -99,17 +116,15 @@ public class Magic extends Div {
                 answer0.addClickListener(buttonClickEvent -> {
                     logger.info("buttom getText {}", answer0.getText());
                     if (answer0.getText().equals(qres)) {
-                        logger.info("Answer is OK.");
-                        //add balance, show messgage and go back main page
-
-                        page.executeJavaScript("alert('You win!')");
+                        //todo add balance, show messgage and go back main page
+                        logger.info("answer is success");
+                        Notification.show(responseType.PUZZLE_DONE_SUCCESS);
                         page.executeJavaScript("redirectLocation('magic')");
 
                     } else {
-                        page.executeJavaScript("alert('You lost!')");
+                        logger.info("answer is not valid.");
+                        Notification.show(responseType.PUZZLE_DONE_FAILED);
                         page.executeJavaScript("redirectLocation('magic')");
-
-                        logger.info("Answer is not valid.");
 
                     }
                 });
@@ -118,15 +133,14 @@ public class Magic extends Div {
                 answer1.addClickListener(buttonClickEvent -> {
                     logger.info("buttom getText {}", answer1.getText());
                     if (answer1.getText().equals(qres)) {
-                        logger.info("Answer is OK.");
-
-                        page.executeJavaScript("alert('You win!')");
+                        logger.info("answer is success");
+                        Notification.show(responseType.PUZZLE_DONE_SUCCESS);
                         page.executeJavaScript("redirectLocation('magic')");
 
                     } else {
-                        page.executeJavaScript("alert('You lost!')");
+                        logger.info("answer is not valid.");
+                        Notification.show(responseType.PUZZLE_DONE_FAILED);
                         page.executeJavaScript("redirectLocation('magic')");
-                        logger.info("Answer is not valid.");
 
                     }
                 });
@@ -135,21 +149,18 @@ public class Magic extends Div {
                 answer2.addClickListener(buttonClickEvent -> {
                     logger.info("buttom getText {}", answer2.getText());
                     if (answer2.getText().equals(qres)) {
-                        logger.info("Answer is OK.");
-
-                        page.executeJavaScript("alert('You win!')");
+                        logger.info("answer is success");
+                        Notification.show(responseType.PUZZLE_DONE_SUCCESS);
                         page.executeJavaScript("redirectLocation('magic')");
-
                     } else {
-                        page.executeJavaScript("alert('You lost!')");
+                        logger.info("answer is not valid.");
+                        Notification.show(responseType.PUZZLE_DONE_FAILED);
                         page.executeJavaScript("redirectLocation('magic')");
-                        logger.info("Answer is not valid.");
 
                     }
                 });
 
-
-                add(answer0,answer1,answer2, timerBar);
+                add(textBody, answer0, answer1, answer2, timerBar);
                 timerBar.start();
                 break;
 
@@ -158,9 +169,9 @@ public class Magic extends Div {
                 logger.info("response TEXT");
                 UI_TYPE_LABLE.setText(res.getRespType());
                 UI_SUBJECT_LABLE.setText(res.getRespText());
-                Html textBody = new Html("<h2 dir='rtl' style='text-align: center;'><br />\n" +
+                Html noteBody = new Html("<h2 dir='rtl' style='text-align: center;'><br />\n" +
                         "<br />" + res.getRespText() + "</h2>");
-                add(textBody);
+                add(noteBody);
                 break;
 
             case "VIDEO":
@@ -176,7 +187,7 @@ public class Magic extends Div {
             case "AUDIO":
                 logger.info("response AUDIO");
                 String audioLink = res.getRespMediaLink();
-                Html musicImage = new Html("<div><img src='frontend\\src\\img\\music.jpeg' alt='Music'></div>");
+                Html musicImage = new Html("<div><img width=100%  height=auto src='frontend\\src\\img\\music.jpeg' alt='Music'></div>");
                 Html audioPlay = new Html("<audio id='myAudio'><source src='" + audioLink + "' type='audio/mpeg'></audio>");
                 add(musicImage, audioPlay);
                 Page page2 = UI.getCurrent().getPage();
@@ -185,8 +196,12 @@ public class Magic extends Div {
 
             case "IMAGE":
                 logger.info("response IAMGE");
-                Html image = new Html("<div><img src='" + res.getRespMediaLink() + "' alt='Bingooo'></div>");
-                add(image);
+                Html image = new Html("<div><img width=100%  height=auto src='" + res.getRespMediaLink() + "' alt='Bingooo'></div>");
+                Random random=new Random();
+
+                int viewCount = random.nextInt(100000); // todo get viewCount form K,V store then set to image info
+                Html viewImage = new Html("<div><img   width=10%  height=auto src='frontend\\src\\img\\view.png' alt='Music'>" + viewCount + "</div>");
+                add(image, viewImage);
                 break;
 
 

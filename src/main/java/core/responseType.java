@@ -14,6 +14,14 @@ public class responseType {
     public static String GIFT = "1000";
     public static String SMS_MESSAGE_SEND_CODE = "Your Code is :";
 
+
+    public static Long IMAGE_ID_START_PINT=200000000L;
+    public static Long AUDIO_ID_START_PINT=400000000L;
+    public static Long VIDEO_ID_START_PINT=600000000L;
+
+
+
+
     // Quezz tyoe
     public static String RESPONSE_TEXT = "TEXT";
     public static String RESPONSE_VIDEO = "VIDEO";
@@ -21,6 +29,12 @@ public class responseType {
     public static String RESPONSE_QUIZ = "QUIZ";
     public static String RESPONSE_IMAGE = "IMAGE";
     public static String RESPONSE_CHARACTER_FERI = "DASHFERI";
+    //Quezz Message
+    public static String PUZZLE_DONE_SUCCESS ="آفرین، درست بود :-)";
+    public static String PUZZLE_DONE_FAILED="پاسخ صحیح نبود. :-(";
+
+
+
 
     ///account
     public static String PHONE_ALREADY_REGISTERED = "phone already registered";

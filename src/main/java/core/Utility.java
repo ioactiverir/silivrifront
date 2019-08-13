@@ -67,6 +67,7 @@ public class Utility {
         return "frontend\\src\\audio\\1.mp3";
     }
 
+
     public static String getRandomText() {
         //todo read data from DB and load in cache has been initialized during service startup
         Random rnd = new Random();

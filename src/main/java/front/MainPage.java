@@ -1,5 +1,6 @@
 package front;
 
+import com.google.common.collect.Lists;
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.Text;
@@ -23,6 +24,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Random;
 
 @Tag("main-page")
 @Route("")
@@ -35,8 +38,8 @@ public class MainPage extends Div {
 
     public MainPage() throws Exception {
 
-        Page page = UI.getCurrent().getPage();
-        page.executeJavaScript("redirectLocation('magic')");
+//        Page page = UI.getCurrent().getPage();
+//        page.executeJavaScript("redirectLocation('magic')");
 
         //core.IAM.authFunction.validateAuthKey();
 //        H1 title = new H1("Surfriz!");
@@ -69,7 +72,18 @@ public class MainPage extends Div {
 
         Div header = new Div(title, navigation);
         header.addClassName("main-layout__header");
-        add(header);
+
+// add magic box here
+        ArrayList<String> wizardList= Lists.newArrayList("magic1.gif",
+                "magic2.gif",
+                "magic3.gif",
+                "magic4.gif",
+                "magic5.gif");
+
+        Random rnd=new Random();
+        int selectItem=rnd.nextInt(4);
+        Html magicBox = new Html("<div><br><a href='/magic'><img  align='center' width=100%  height=auto src='frontend\\src\\img\\"+ wizardList.get(selectItem) +"' alt='Music'></a></div>");
+        add(header,magicBox);
 
         addClassName("main-layout");
 

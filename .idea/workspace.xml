@@ -2,20 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7def833-4192-433c-9cdb-3e15362dfeb8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/download.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/kandolf.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/magic.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/magic1.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/magic2.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/magic3.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/magic4.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/magic5.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/wizard.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/front/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/front/MainLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/MainLayout.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/front/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/frontend/styles/shared-styles.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/frontend/styles/shared-styles.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

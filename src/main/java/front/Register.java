@@ -23,8 +23,11 @@ import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
+import core.Persisit.sqlCommand;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 @Route(value = "register", layout = MainLayout.class)
 @PageTitle("registering form")
@@ -97,6 +100,15 @@ public class Register extends VerticalLayout {
         lastName.setWidth("75%");
         formLayout.addFormItem(lastName, "Last Name");
 
+        TextField phoneNumber = new TextField();
+        phoneNumber.setWidth("75%");
+        formLayout.addFormItem(phoneNumber, "Phone Number");
+
+        TextField userEmail = new TextField();
+        userEmail.setWidth("75%");
+        formLayout.addFormItem(userEmail, "Email");
+
+
         TextField bankNo = new TextField();
         bankNo.setWidth("75%");
         formLayout.addFormItem(bankNo, "Bank Account");
@@ -109,7 +121,43 @@ public class Register extends VerticalLayout {
 
         button.addClickListener(buttonClickEvent -> {
             //todo store form info in base64.
-            logger.info("User info:{} {} {}", firstName.getValue(), lastName.getValue(), bankNo.getValue());
+            logger.info("User info:{} {} {} {} {}", firstName.getValue()
+                    , userEmail.getValue()
+                    , phoneNumber
+                    , lastName.getValue()
+                    , bankNo.getValue());
+            // persist in database
+
+            // check user already register or not!
+            core.userInfo newUser = new core.userInfo();
+            newUser.setPhoneNumber(phoneNumber.getValue());
+            newUser.setUserFirstName(firstName.getValue());
+            newUser.setUserLastName(lastName.getValue());
+            newUser.setBankNo(bankNo.getValue());
+            newUser.setUserMail(userEmail.getValue());
+            newUser.setUserCreditValue(0);
+            newUser.setUserGiftValue(0);
+            Transaction transaction;
+            transaction = null;
+            try (Session session = sqlCommand.getSessionFactory().openSession()) {
+                // start a transaction
+                logger.info("starting transcation, recording new user...");
+                transaction = session.beginTransaction();
+                // save the student objects
+                session.save(newUser);
+                // commit transaction
+                transaction.commit();
+                // revoke sms code
+                session.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                if (transaction != null) {
+                    transaction.rollback();
+                }
+                e.printStackTrace();
+            }
+
+
             //ok, done. now redirect  to main page.
             Page page = UI.getCurrent().getPage();
             page.executeJavaScript("redirectLocation('magic')");

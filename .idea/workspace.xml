@@ -2,9 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7def833-4192-433c-9cdb-3e15362dfeb8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/giftBox.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/giftBox.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/magicBox.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/player.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/front/MainLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/MainLayout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/front/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/Game/Surprise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Game/Surprise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/responseType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/responseType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/front/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/front/Magic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/Magic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/frontend/styles/shared-styles.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/frontend/styles/shared-styles.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/my-starter-project.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -181,6 +190,17 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/core/Game/Surprise.java</url>
+          <line>22</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.vaadin.designer2.intellij.settings.SizePresetsSettingsComponent">
     <option name="sizePresets">

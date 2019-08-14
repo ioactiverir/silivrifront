@@ -30,8 +30,8 @@ public class responseType {
     public static String RESPONSE_IMAGE = "IMAGE";
     public static String RESPONSE_CHARACTER_FERI = "DASHFERI";
     //Quezz Message
-    public static String PUZZLE_DONE_SUCCESS ="آفرین، درست بود :-)";
-    public static String PUZZLE_DONE_FAILED="پاسخ صحیح نبود. :-(";
+    public static String PUZZLE_DONE_SUCCESS ="Woww! You win!";
+    public static String PUZZLE_DONE_FAILED="Ooops! You lose!";
 
 
 

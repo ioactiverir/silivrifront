@@ -23,6 +23,7 @@ core/Cache/cache.class
 front/ReviewEditorDialog.class
 core/raceObj.class
 com/packagename/myapp/backend/StaticData.class
+core/Cache/cache$6.class
 com/packagename/myapp/backend/CategoryService$1.class
 front/Profile.class
 front/AbstractEditorDialog.class
@@ -43,6 +44,7 @@ front/MainLayout.class
 front/MainPage.class
 front/LocalDateToStringEncoder.class
 front/CategoriesList.class
+core/Cache/cache$7.class
 core/service$2.class
 core/service$7.class
 com/packagename/myapp/backend/CategoryService.class

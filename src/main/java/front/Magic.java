@@ -1,27 +1,27 @@
 package front;
 
-import com.helger.commons.lang.priviledged.IPrivilegedAction;
-import com.vaadin.flow.component.*;
-import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.Html;
+import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.charts.model.Responsive;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JavaScript;
+import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.Page;
-import com.vaadin.flow.component.progressbar.ProgressBar;
-import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
-import core.Cache.cache;
 import core.Game.Surprise;
 import core.Response;
 import core.responseType;
@@ -29,10 +29,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.vaadin.erik.TimerBar;
 
-import java.awt.*;
 import java.util.Random;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Route(value = "magic", layout = MainLayout.class)
 @PageTitle("Profile Information")
@@ -48,14 +45,13 @@ public class Magic extends VerticalLayout {
 
         //core.IAM.authFunction.validateAuthKey();
 //        H1 title = new H1("Surfriz!");
-        H1 title = new H1("");
-        title.addClassName("main-layout__title");
 
         RouterLink magic = new RouterLink(null, MainPage.class);
-        magic.add(new Icon(VaadinIcon.MAGIC), new Text("Try!"));
+        magic.add(new Icon(VaadinIcon.MAGIC), new Text("New"));
         magic.addClassName("main-layout__nav-item");
         // Only show as active for the exact URL, but not for sub paths
         magic.setHighlightCondition(HighlightConditions.sameLocation());
+
 
         RouterLink categories = new RouterLink(null, CategoriesList.class);
         categories.add(new Icon(VaadinIcon.CASH), new Text("Money"));
@@ -72,7 +68,6 @@ public class Magic extends VerticalLayout {
         register.addClassName("main-layout__nav-item");
 
 
-
         RouterLink login = new RouterLink(null, Login.class);
         login.add(new Icon(VaadinIcon.SIGN_OUT), new Text("Logout"));
         login.addClassName("main-layout__nav-item");
@@ -81,7 +76,7 @@ public class Magic extends VerticalLayout {
         Div navigation = new Div(magic, categories, profile, login);
         navigation.addClassName("main-layout__nav");
 
-        Div header = new Div(title, navigation);
+        Div header = new Div(navigation);
         header.addClassName("main-layout__header");
         add(header);
         addClassName("main-layout");
@@ -89,30 +84,24 @@ public class Magic extends VerticalLayout {
 
         Surprise wizard = new Surprise();
         Response res = wizard.getSurprise();
-        String wType = res.getRespType();
-        Label UI_TYPE_LABLE = new Label("");
-        Label UI_SUBJECT_LABLE = new Label("");
-        Label Quiz_Answr_Options = new Label("");
         switch (res.getRespType()) {
 
             case "QUIZ":
                 logger.info("response QUIZ");
+                Page page = UI.getCurrent().getPage();
 
-
-                UI_TYPE_LABLE.setText(res.getRespType());
-                UI_SUBJECT_LABLE.setText(res.getRespText());
-                Quiz_Answr_Options.setText(res.getRespMessage());
+                FormLayout quizForm = new FormLayout();
                 String optionQu[] = res.getRespMessage().split(",");
+
                 TimerBar timerBar = new TimerBar(res.getRespTime() * 1000);
-                Html textBody = new Html("<h2 dir='ltr' style='text-align: center;'><br />\n" +
-                        "<br />" + res.getRespText() + "</h2>");
+//
                 String qres = res.getQuezzRes();
                 logger.info("Quiz valid answer is a {}", qres);
                 timerBar.addTimerEndedListener(e -> {
                     logger.warn("your exame finishded.");
                 }); //fixme leave page or revoke quiz
+
                 Button answer0 = new Button(optionQu[0]);
-                Page page = UI.getCurrent().getPage();
                 answer0.addClickListener(buttonClickEvent -> {
                     logger.info("buttom getText {}", answer0.getText());
                     if (answer0.getText().equals(qres)) {
@@ -160,15 +149,22 @@ public class Magic extends VerticalLayout {
                     }
                 });
 
-                add(textBody, answer0, answer1, answer2, timerBar);
+                Html quizCharImg = new Html("<img  width=75%  height=auto src='frontend\\src\\img\\magic5.gif' alt='Quiz'>");
+                quizForm.addFormItem(quizCharImg,"");
+                Label question=new Label(res.getRespText());
+                question.addClassName("font-label");
+                quizForm.addFormItem(question, "");
+                quizForm.addFormItem(answer0, "");
+                quizForm.addFormItem(answer1, "");
+                quizForm.addFormItem(answer2, "");
+                quizForm.addFormItem(timerBar,"Answer Time");
+                add(quizForm);
                 timerBar.start();
                 break;
 
 
             case "TEXT":
                 logger.info("response TEXT");
-                UI_TYPE_LABLE.setText(res.getRespType());
-                UI_SUBJECT_LABLE.setText(res.getRespText());
                 Html noteBody = new Html("<h2 dir='rtl' style='text-align: center;'><br />\n" +
                         "<br />" + res.getRespText() + "</h2>");
                 add(noteBody);
@@ -176,9 +172,12 @@ public class Magic extends VerticalLayout {
 
             case "VIDEO":
                 logger.info("response VIDEO");
+
+                final Div div1 = new Div();
+                div1.setText("");
                 String mediaLink = res.getRespMediaLink();
-                Html videoPlay = new Html("<div><video class='center' id='vv' width='320' height='240' autoplay><source src='" + mediaLink + "' type='video/mp4'></video></div>");
-                add(videoPlay);
+                Html videoPlay = new Html("<div><video class='center' id='vv' width=100% height=auto autoplay><source src='" + mediaLink + "' type='video/mp4'></video></div>");
+                add(div1, videoPlay);
                 page = UI.getCurrent().getPage();
                 page.executeJavaScript("var vid = document.getElementById('vv');  vid.play();");
                 break;
@@ -187,7 +186,7 @@ public class Magic extends VerticalLayout {
             case "AUDIO":
                 logger.info("response AUDIO");
                 String audioLink = res.getRespMediaLink();
-                Html musicImage = new Html("<div><img width=100%  height=auto src='frontend\\src\\img\\music.jpeg' alt='Music'></div>");
+                Html musicImage = new Html("<div><img width=100%  height=auto src='frontend\\src\\img\\player.gif' alt='Music'></div>");
                 Html audioPlay = new Html("<audio id='myAudio'><source src='" + audioLink + "' type='audio/mpeg'></audio>");
                 add(musicImage, audioPlay);
                 Page page2 = UI.getCurrent().getPage();
@@ -196,8 +195,10 @@ public class Magic extends VerticalLayout {
 
             case "IMAGE":
                 logger.info("response IAMGE");
+                final Div div2 = new Div();
+                final Div div3 = new Div();
                 Html image = new Html("<div><img width=100%  height=auto src='" + res.getRespMediaLink() + "' alt='Bingooo'></div>");
-                Random random=new Random();
+                Random random = new Random();
 
                 int viewCount = random.nextInt(100000); // todo get viewCount form K,V store then set to image info
                 Html viewImage = new Html("<div><img   width=10%  height=auto src='frontend\\src\\img\\view.png' alt='Music'>" + viewCount + "</div>");

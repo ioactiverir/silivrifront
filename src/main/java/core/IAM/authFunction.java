@@ -33,6 +33,8 @@ public class authFunction {
                     logger.info("session validation successful.");
                 } else {
                     logger.error("Session is not valid or expired.");
+                    Page page = UI.getCurrent().getPage();
+                    page.executeJavaScript("redirectLocation('login')");
                 }
             } else {
                 logger.error("Error reading cookie values");

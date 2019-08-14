@@ -6,9 +6,18 @@ public class Response {
     private String respText;   // message
     private String respCharacterName; // who want to show response?
     private String respMessage;
+    private String respId;
 
     public String getQuezzRes() {
         return quezzRes;
+    }
+
+    public String getRespId() {
+        return respId;
+    }
+
+    public void setRespId(String respId) {
+        this.respId = respId;
     }
 
     public void setQuezzRes(String quezzRes) {

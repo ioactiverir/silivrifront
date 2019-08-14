@@ -79,4 +79,18 @@ public class cache {
             });
 
 
+    // map of authKey, QuzieId , every user have a unique quiz at the moment.
+    public static final  LoadingCache<String,String> quizSession = CacheBuilder.newBuilder()
+            .build(new CacheLoader<String,String>() {
+
+                @Override
+                public String load(String s) throws Exception {
+                    return null;
+                }
+            });
+
+
+
+
+
 }

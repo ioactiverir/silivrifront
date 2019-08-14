@@ -2,17 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7def833-4192-433c-9cdb-3e15362dfeb8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/giftBox.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/giftBox.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/magicBox.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/frontend/src/img/player.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/Cache/cache.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Cache/cache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/Game/Quezz.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Game/Quezz.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/core/Game/Surprise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Game/Surprise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/responseType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/responseType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/front/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Response.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/Utility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Utility.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/front/Magic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/Magic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/frontend/styles/shared-styles.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/frontend/styles/shared-styles.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/META-INF/my-starter-project.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/front/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/MainPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/front/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/Profile.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/front/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/Register.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -196,7 +195,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/core/Game/Surprise.java</url>
-          <line>22</line>
+          <line>56</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>

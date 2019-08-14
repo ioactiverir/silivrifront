@@ -8,6 +8,16 @@ public class Quezz {
     private String quezzSubject;
     private String quezzMessage;
 
+    public String getQuezzId() {
+        return quezzId;
+    }
+
+    public void setQuezzId(String quezzId) {
+        this.quezzId = quezzId;
+    }
+
+    private String quezzId;
+
     public String getQuezzResult() {
         return quezzResult;
     }

@@ -9,6 +9,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.File;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -16,6 +18,19 @@ import java.util.Random;
 
 public class Utility {
     private static Logger logger = LogManager.getLogger(Utility.class);
+
+
+
+    public static String sha1(String input) throws NoSuchAlgorithmException {
+        MessageDigest mDigest = MessageDigest.getInstance("SHA1");
+        byte[] result = mDigest.digest(input.getBytes());
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < result.length; i++) {
+            sb.append(Integer.toString((result[i] & 0xff) + 0x100, 16).substring(1));
+        }
+
+        return sb.toString();
+    }
 
     public static void importImageLocation() {
         File folder = new File("src/main/webapp/frontend/src/img");
@@ -40,6 +55,7 @@ public class Utility {
     }
 
     // function to generate a random session ID of length n
+    //todo session authKey is a sha1(phonenumber+random string(25))
     public static String getauthKeyID(int n) {
 
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvxyz";

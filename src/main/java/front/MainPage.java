@@ -4,26 +4,19 @@ import com.google.common.collect.Lists;
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.Text;
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.page.Page;
 import com.vaadin.flow.component.page.Viewport;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
-import core.Game.Surprise;
-import core.Response;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -38,11 +31,14 @@ public class MainPage extends Div {
 
     public MainPage() throws Exception {
 
-//        Page page = UI.getCurrent().getPage();
-//        page.executeJavaScript("redirectLocation('magic')");
+        try {
+            core.IAM.authFunction.validateAuthKey();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        //core.IAM.authFunction.validateAuthKey();
-//        H1 title = new H1("Surfriz!");
+
+
         H1 title = new H1("");
         title.addClassName("main-layout__title");
 

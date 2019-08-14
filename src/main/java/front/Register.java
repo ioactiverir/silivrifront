@@ -41,12 +41,12 @@ public class Register extends VerticalLayout {
 
 
     public Register() {
+        try {
+            core.IAM.authFunction.validateAuthKey();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-//        try {
-//            core.IAM.authFunction.validateAuthKey();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
 
 
         H1 title = new H1("");

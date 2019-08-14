@@ -31,6 +31,12 @@ public class Profile extends Div {
     private static Logger logger = LogManager.getLogger(MainPage.class);
 
     public Profile() throws Exception {
+        try {
+            core.IAM.authFunction.validateAuthKey();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         userInfo employee = new userInfo();
         String userPhone;
         Cookie[] authKeyValue;

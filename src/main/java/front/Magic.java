@@ -22,6 +22,9 @@ import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.server.VaadinResponse;
+import com.vaadin.flow.server.VaadinService;
+import core.Cache.cache;
 import core.Game.Surprise;
 import core.Response;
 import core.responseType;
@@ -29,6 +32,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.vaadin.erik.TimerBar;
 
+import javax.servlet.http.Cookie;
 import java.util.Random;
 
 @Route(value = "magic", layout = MainLayout.class)
@@ -43,8 +47,11 @@ public class Magic extends VerticalLayout {
     public Magic() {
 
 
-        //core.IAM.authFunction.validateAuthKey();
-//        H1 title = new H1("Surfriz!");
+        try {
+            core.IAM.authFunction.validateAuthKey();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         RouterLink magic = new RouterLink(null, MainPage.class);
         magic.add(new Icon(VaadinIcon.MAGIC), new Text("New"));
@@ -96,9 +103,24 @@ public class Magic extends VerticalLayout {
                 TimerBar timerBar = new TimerBar(res.getRespTime() * 1000);
 //
                 String qres = res.getQuezzRes();
+
                 logger.info("Quiz valid answer is a {}", qres);
                 timerBar.addTimerEndedListener(e -> {
-                    logger.warn("your exame finishded.");
+                    logger.warn("your exame finishded2.");
+
+
+                    Cookie[] authKeyValue = VaadinService.getCurrentRequest().getCookies();
+                    String sessionAuthKeyValue;
+                    for (Cookie cookie : authKeyValue) {
+                        if (cookie.getName().equals("authKey")) {
+                            sessionAuthKeyValue = cookie.getValue();
+                            logger.info("revoke sessionId {}",sessionAuthKeyValue);
+                            cache.quizSession.invalidate(sessionAuthKeyValue);
+                        } else {
+                            logger.error("something is wrong, authKey error during quiz!");
+                            //todo kill session and redirect to login page
+                        }
+                    }
                 }); //fixme leave page or revoke quiz
 
                 Button answer0 = new Button(optionQu[0]);

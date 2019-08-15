@@ -118,11 +118,11 @@ public class service {
                                                 List result = query.list();
                                                 transaction.commit();
                                                 if (!result.isEmpty()) {
-                                                    String sessionID = Utility.getauthKeyID(25);
+                                                    String sessionID = Utility.getauthKeyID(responseType.SESSION_SIZE);
                                                     cache.sessions.put(userPhone, sessionID);
                                                     verifyResult = sessionID;
                                                 } else {
-                                                    String sessionID = Utility.getauthKeyID(25);
+                                                    String sessionID = Utility.getauthKeyID(responseType.SESSION_SIZE);
                                                     cache.sessions.put(userPhone, sessionID);
                                                     verifyResult = "Forward to register via session => " + sessionID;
                                                 }

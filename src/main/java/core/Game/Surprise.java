@@ -16,23 +16,21 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
-public class Surprise {
-    private static Logger logger = LogManager.getLogger(MainPage.class);
+public class Surprise  {
+    private static Logger logger = LogManager.getLogger(Surprise.class);
 
-    public Response getSurprise() {
+    public Response getSurprise(){
 
         /*
         Read authKey form cookie and make a quezzID based on sha1(authKeyID,randomString(25),Date,Time)
          */
         Cookie[] authKeyValue = VaadinService.getCurrentRequest().getCookies();
-        String sessionAuthKeyValue = null;
-        String queezId=null;
+        String sessionAuthKeyValue = "";
+        String queezId="";
         for (Cookie cookie : authKeyValue) {
             if (cookie.getName().equals("authKey")) {
                 sessionAuthKeyValue = cookie.getValue();
-            } else {
-                logger.error("something is wrong, authKey error during bulding surprize!!");
-                //todo kill session and redirect to login page
+               logger.info("session AuthKey value {}",sessionAuthKeyValue);
             }
         }
         //get datetime
@@ -41,7 +39,7 @@ public class Surprise {
         String dateTime=dtf.format(now);
 
         try {
-            queezId= Utility.sha1(sessionAuthKeyValue+dateTime+ Utility.getauthKeyID(30));
+            queezId= Utility.sha1(sessionAuthKeyValue+dateTime+ Utility.getauthKeyID(responseType.SESSION_SIZE));
             logger.info("sessionID {} generated successfully.", queezId);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();

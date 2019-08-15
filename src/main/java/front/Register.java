@@ -36,7 +36,7 @@ import org.hibernate.Transaction;
 @JavaScript("frontend://src/javascripts/pageUtils.js")
 public class Register extends VerticalLayout {
 
-    private static Logger logger = LogManager.getLogger(MainPage.class);
+    private static Logger logger = LogManager.getLogger(Register.class);
     private Button button = new Button("Register Now!");
 
 
@@ -73,12 +73,12 @@ public class Register extends VerticalLayout {
         register.addClassName("main-layout__nav-item");
 
 
-        RouterLink login = new RouterLink(null, Login.class);
-        login.add(new Icon(VaadinIcon.SIGN_OUT), new Text("Logout"));
-        login.addClassName("main-layout__nav-item");
+        RouterLink logout = new RouterLink(null, LogOut.class);
+        logout.add(new Icon(VaadinIcon.SIGN_OUT), new Text("Logout"));
+        logout.addClassName("main-layout__nav-item");
 
 
-        Div navigation = new Div(magic, categories, profile, login);
+        Div navigation = new Div(magic, categories, profile, logout);
         navigation.addClassName("main-layout__nav");
 
         Div header = new Div(title, navigation);

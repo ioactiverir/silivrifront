@@ -15,6 +15,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinResponse;
 import core.Cache.cache;
 import core.Utility;
+import core.responseType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -27,15 +28,12 @@ import javax.servlet.http.Cookie;
 @HtmlImport("frontend://styles/shared-styles.html")
 @JavaScript("frontend://src/javascripts/pageUtils.js")
 public class Login extends VerticalLayout {
-    private static Logger logger = LogManager.getLogger(MainPage.class);
+    private static Logger logger = LogManager.getLogger(Login.class);
 
     final Button sendCode = new Button("Send Code");
 
     public Login() {
-
-
         setSizeFull();
-
         Div header = new Div();
         header.addClassName("main-layout__header");
 
@@ -50,23 +48,24 @@ public class Login extends VerticalLayout {
         sendCode.addClickListener(buttonClickEvent -> {
 
             // sample
-            String authKey = core.Utility.getauthKeyID(15);
+            String authKey = core.Utility.getauthKeyID(responseType.SESSION_SIZE);
+            logger.info("session resptype size {}",responseType.SESSION_SIZE);
             String phone = phoneNumber.getValue();
             Cookie cookies = new Cookie("authKey", authKey);
             VaadinResponse.getCurrent().addCookie(cookies);
 
             cache.sessions.put(phone, authKey);
             logger.info("set autkey {} for phone {}", authKey, phone);
-            Page page = UI.getCurrent().getPage();
-            page.executeJavaScript("getCode('" + phone + "')");
-            //  send sms code for usr phone
+
             String code = Utility.getSMSCode();
             logger.info("set sms code {} for phone {}", code, phone);
             cache.sendCode.put(phone, code);
+
             // todo call sms gateway  and code.
             logger.info("forward to verify sms code page");
-            // page = UI.getCurrent().getPage();
-            // page.executeJavaScript("redirectLocation('verify')");
+
+            Page page = UI.getCurrent().getPage();
+            page.executeJavaScript("redirectLocation('verify')");
         });
 
     }

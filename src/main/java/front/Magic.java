@@ -42,17 +42,16 @@ import java.util.Random;
 @Tag("magic")
 
 public class Magic extends VerticalLayout {
-    private static Logger logger = LogManager.getLogger(MainPage.class);
+    private static Logger logger = LogManager.getLogger(Magic.class);
 
     public Magic() {
 
-
+        logger.info("==================== [New Magic]================");
         try {
             core.IAM.authFunction.validateAuthKey();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         RouterLink magic = new RouterLink(null, MainPage.class);
         magic.add(new Icon(VaadinIcon.MAGIC), new Text("New"));
         magic.addClassName("main-layout__nav-item");
@@ -75,18 +74,31 @@ public class Magic extends VerticalLayout {
         register.addClassName("main-layout__nav-item");
 
 
-        RouterLink login = new RouterLink(null, Login.class);
-        login.add(new Icon(VaadinIcon.SIGN_OUT), new Text("Logout"));
-        login.addClassName("main-layout__nav-item");
+        RouterLink logout = new RouterLink(null, LogOut.class);
+        logout.add(new Icon(VaadinIcon.SIGN_OUT), new Text("Logout"));
+        logout.addClassName("main-layout__nav-item");
 
 
-        Div navigation = new Div(magic, categories, profile, login);
+        Div navigation = new Div(magic, categories, profile, logout);
         navigation.addClassName("main-layout__nav");
 
         Div header = new Div(navigation);
         header.addClassName("main-layout__header");
         add(header);
         addClassName("main-layout");
+
+
+        Cookie[] authKeyValue = VaadinService.getCurrentRequest().getCookies();
+        String sessionAuthKeyValue = "";
+        for (Cookie cookie : authKeyValue) {
+            if (cookie.getName().equals("authKey")) {
+                sessionAuthKeyValue = cookie.getValue();
+                logger.info("authkey found {}", sessionAuthKeyValue);
+            } // end of if authkey
+        } // end of for
+
+
+
 
 
         Surprise wizard = new Surprise();
@@ -97,6 +109,8 @@ public class Magic extends VerticalLayout {
                 logger.info("response QUIZ");
                 Page page = UI.getCurrent().getPage();
 
+
+
                 FormLayout quizForm = new FormLayout();
                 String optionQu[] = res.getRespMessage().split(",");
 
@@ -105,83 +119,98 @@ public class Magic extends VerticalLayout {
                 String qres = res.getQuezzRes();
 
                 logger.info("Quiz valid answer is a {}", qres);
+                String finalSessionAuthKeyValue = sessionAuthKeyValue;
+                logger.info("Queez info session {}: quzzSession {}"
+                        , finalSessionAuthKeyValue, res.getRespId());
                 timerBar.addTimerEndedListener(e -> {
-                    logger.warn("your exame finishded2.");
+                    logger.warn("Game Over!.");
+                    logger.info("revoke sessionId {}", finalSessionAuthKeyValue);
+                    cache.quizSession.invalidate(finalSessionAuthKeyValue);
 
 
-                    Cookie[] authKeyValue = VaadinService.getCurrentRequest().getCookies();
-                    String sessionAuthKeyValue;
-                    for (Cookie cookie : authKeyValue) {
-                        if (cookie.getName().equals("authKey")) {
-                            sessionAuthKeyValue = cookie.getValue();
-                            logger.info("revoke sessionId {}",sessionAuthKeyValue);
-                            cache.quizSession.invalidate(sessionAuthKeyValue);
-                        } else {
-                            logger.error("something is wrong, authKey error during quiz!");
-                            //todo kill session and redirect to login page
-                        }
-                    }
                 }); //fixme leave page or revoke quiz
 
                 Button answer0 = new Button(optionQu[0]);
                 answer0.addClickListener(buttonClickEvent -> {
-                    logger.info("buttom getText {}", answer0.getText());
+//                    logger.info("buttom getText {}", answer0.getText());
                     if (answer0.getText().equals(qres)) {
                         //todo add balance, show messgage and go back main page
-                        logger.info("answer is success");
-                        Notification.show(responseType.PUZZLE_DONE_SUCCESS);
-                        page.executeJavaScript("redirectLocation('magic')");
-
+                        if (cache.quizSession.asMap().containsValue(res.getRespId())) {
+                            cache.quizSession.invalidate(finalSessionAuthKeyValue);
+                            logger.info("answer is success");
+                            Notification.show(responseType.PUZZLE_DONE_SUCCESS);
+                            //      page.executeJavaScript("redirectLocation('magic')");
+                        } else {
+                            cache.quizSession.invalidate(finalSessionAuthKeyValue);
+                            logger.warn("queez time is over.");
+                            Notification.show("Game Over!");
+                        }
                     } else {
+                        cache.quizSession.invalidate(finalSessionAuthKeyValue);
                         logger.info("answer is not valid.");
                         Notification.show(responseType.PUZZLE_DONE_FAILED);
-                        page.executeJavaScript("redirectLocation('magic')");
+                        //page.executeJavaScript("redirectLocation('magic')");
 
                     }
                 });
 
                 Button answer1 = new Button(optionQu[1]);
                 answer1.addClickListener(buttonClickEvent -> {
-                    logger.info("buttom getText {}", answer1.getText());
+                    //                  logger.info("buttom getText {}", answer1.getText());
                     if (answer1.getText().equals(qres)) {
-                        logger.info("answer is success");
-                        Notification.show(responseType.PUZZLE_DONE_SUCCESS);
-                        page.executeJavaScript("redirectLocation('magic')");
-
+                        if (cache.quizSession.asMap().containsValue(res.getRespId())) {
+                            cache.quizSession.invalidate(finalSessionAuthKeyValue);
+                            logger.info("answer is success");
+                            Notification.show(responseType.PUZZLE_DONE_SUCCESS);
+                            //  page.executeJavaScript("redirectLocation('magic')");
+                        } else {
+                            cache.quizSession.invalidate(finalSessionAuthKeyValue);
+                            logger.warn("queez time is over.");
+                            Notification.show("Game Over!");
+                        }
                     } else {
+                        cache.quizSession.invalidate(finalSessionAuthKeyValue);
                         logger.info("answer is not valid.");
                         Notification.show(responseType.PUZZLE_DONE_FAILED);
-                        page.executeJavaScript("redirectLocation('magic')");
+                        //page.executeJavaScript("redirectLocation('magic')");
 
                     }
                 });
 
                 Button answer2 = new Button(optionQu[2]);
                 answer2.addClickListener(buttonClickEvent -> {
-                    logger.info("buttom getText {}", answer2.getText());
+                    //                logger.info("buttom getText {}", answer2.getText());
                     if (answer2.getText().equals(qres)) {
-                        logger.info("answer is success");
-                        Notification.show(responseType.PUZZLE_DONE_SUCCESS);
-                        page.executeJavaScript("redirectLocation('magic')");
+                        if (cache.quizSession.asMap().containsValue(res.getRespId())) {
+                            cache.quizSession.invalidate(finalSessionAuthKeyValue);
+                            logger.info("answer is success");
+                            Notification.show(responseType.PUZZLE_DONE_SUCCESS);
+                            // page.executeJavaScript("redirectLocation('magic')");
+                        } else {
+                            cache.quizSession.invalidate(finalSessionAuthKeyValue);
+                            logger.warn("queez time is over.");
+                            Notification.show("Game Over!");
+                        }
                     } else {
+                        cache.quizSession.invalidate(finalSessionAuthKeyValue);
                         logger.info("answer is not valid.");
                         Notification.show(responseType.PUZZLE_DONE_FAILED);
-                        page.executeJavaScript("redirectLocation('magic')");
+                        //page.executeJavaScript("redirectLocation('magic')");
 
                     }
                 });
 
                 Html quizCharImg = new Html("<img  width=75%  height=auto src='frontend\\src\\img\\magic5.gif' alt='Quiz'>");
-                quizForm.addFormItem(quizCharImg,"");
-                Label question=new Label(res.getRespText());
+                quizForm.addFormItem(quizCharImg, "");
+                Label question = new Label(res.getRespText());
                 question.addClassName("font-label");
                 quizForm.addFormItem(question, "");
                 quizForm.addFormItem(answer0, "");
                 quizForm.addFormItem(answer1, "");
                 quizForm.addFormItem(answer2, "");
-                quizForm.addFormItem(timerBar,"Answer Time");
+                quizForm.addFormItem(timerBar, "Answer Time");
                 add(quizForm);
-                timerBar.start();
+               // timerBar.start();
                 break;
 
 

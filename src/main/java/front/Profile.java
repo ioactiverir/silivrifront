@@ -28,7 +28,7 @@ import java.util.List;
 @Tag("profile")
 
 public class Profile extends Div {
-    private static Logger logger = LogManager.getLogger(MainPage.class);
+    private static Logger logger = LogManager.getLogger(Profile.class);
 
     public Profile() throws Exception {
         try {

@@ -4,19 +4,24 @@ import com.google.common.collect.Lists;
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.Text;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
+import com.vaadin.flow.component.page.Page;
 import com.vaadin.flow.component.page.Viewport;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.server.VaadinService;
+import core.Cache.cache;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.servlet.http.Cookie;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -29,13 +34,43 @@ import java.util.Random;
 public class MainPage extends Div {
     private static Logger logger = LogManager.getLogger(MainPage.class);
 
-    public MainPage() throws Exception {
+    public MainPage() {
+
+//        try {
+//            core.IAM.authFunction.validateAuthKey();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
 
         try {
-            core.IAM.authFunction.validateAuthKey();
-        } catch (Exception e) {
+
+            Cookie[] authKeyValue = VaadinService.getCurrentRequest().getCookies();
+            for (Cookie cookie : authKeyValue) {
+                if (cookie.getName().equals("authKey")) {
+                    String readSessionValue = cookie.getValue();
+                    logger.info("verifying session {} value.", readSessionValue);
+                    if (cache.sessions.asMap().containsValue(readSessionValue)) {
+                        logger.info("session validation successful.");
+                    } else {
+                        logger.error("Session is not valid or expired.");
+                        Page page = UI.getCurrent().getPage();
+                        page.executeJavaScript("redirectLocation('login')");
+                    }
+                }
+
+            }
+        }catch (Exception e){
             e.printStackTrace();
         }
+
+
+
+
+
+
+
+
 
 
 
@@ -58,12 +93,12 @@ public class MainPage extends Div {
         profile.addClassName("main-layout__nav-item");
 
 
-        RouterLink login = new RouterLink(null, Login.class);
-        login.add(new Icon(VaadinIcon.SIGN_OUT), new Text("Logout"));
-        login.addClassName("main-layout__nav-item");
+        RouterLink logout = new RouterLink(null, LogOut.class);
+        logout.add(new Icon(VaadinIcon.SIGN_OUT), new Text("Logout"));
+        logout.addClassName("main-layout__nav-item");
 
 
-        Div navigation = new Div(magic, categories, profile, login);
+        Div navigation = new Div(magic, categories, profile, logout);
         navigation.addClassName("main-layout__nav");
 
         Div header = new Div(title, navigation);

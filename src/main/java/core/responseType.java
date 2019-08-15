@@ -49,7 +49,7 @@ public class responseType {
     public static String SESSION_IS_NOT_VALID = "session is not valid or expired.";
     // security
 
-
+    public static int SESSION_SIZE=60;
     // Credit and account balance
     public static String QUEEZ_NO_CREDIT_MESSAGE = "Hey! charge your account now and get more gifts!";
     public static String ACCOUNT_CREDIT_CHARGED_SUCCESS = "acocunt charged successfully";

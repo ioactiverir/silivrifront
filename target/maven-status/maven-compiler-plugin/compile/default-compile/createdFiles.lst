@@ -53,6 +53,7 @@ core/Cache/cache$2.class
 core/service$10.class
 front/Login.class
 core/service$9.class
+front/LogOut.class
 core/service$3.class
 core/service$6.class
 com/packagename/myapp/backend/Review.class

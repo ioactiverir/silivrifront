@@ -1,7 +1,6 @@
 package core.IAM;
 
 import core.Cache.cache;
-import core.service;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,7 +8,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class sessionManager {
 
-    private static Logger logger = LogManager.getLogger(service.class);
+    private static Logger logger = LogManager.getLogger(sessionManager.class);
 
     public static boolean validateSession(String userPhone, String sessionID) throws Exception {
         AtomicBoolean authorzie = new AtomicBoolean(false);

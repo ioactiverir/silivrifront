@@ -15,6 +15,7 @@
 /home/machin/tt/my-starter-project/src/main/java/front/MainPage.java
 /home/machin/tt/my-starter-project/src/main/java/core/Persisit/sqlCommand.java
 /home/machin/tt/my-starter-project/src/main/java/front/Login.java
+/home/machin/tt/my-starter-project/src/main/java/front/RunService.java
 /home/machin/tt/my-starter-project/src/main/java/front/ReviewEditorDialog.java
 /home/machin/tt/my-starter-project/src/main/java/core/Response.java
 /home/machin/tt/my-starter-project/src/main/java/core/raceObj.java
@@ -25,7 +26,6 @@
 /home/machin/tt/my-starter-project/src/main/java/front/Magic.java
 /home/machin/tt/my-starter-project/src/main/java/core/Utility.java
 /home/machin/tt/my-starter-project/src/main/java/front/CategoriesList.java
-/home/machin/tt/my-starter-project/src/main/java/core/service.java
 /home/machin/tt/my-starter-project/src/main/java/core/userInfo.java
 /home/machin/tt/my-starter-project/src/main/java/front/ConfirmationDialog.java
 /home/machin/tt/my-starter-project/src/main/java/com/packagename/myapp/backend/Category.java

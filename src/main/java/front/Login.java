@@ -7,6 +7,7 @@ import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.Page;
 import com.vaadin.flow.component.textfield.TextField;
@@ -30,7 +31,7 @@ import javax.servlet.http.Cookie;
 public class Login extends VerticalLayout {
     private static Logger logger = LogManager.getLogger(Login.class);
 
-    final Button sendCode = new Button("Send Code");
+    final Button sendCode = new Button("Request Code");
 
     public Login() {
         setSizeFull();
@@ -39,12 +40,19 @@ public class Login extends VerticalLayout {
 
         FormLayout formLayout = new FormLayout();
 
+        Div div=new Div();
+        formLayout.addFormItem(div,"");
+
+        Label banner=new Label();
+        banner.setText("Enter phone number and login the app.");
+        formLayout.addFormItem(banner,"");
 
         TextField phoneNumber = new TextField();
         phoneNumber.setWidth("75%");
-        formLayout.addFormItem(phoneNumber, "Phone Number");
+        formLayout.addFormItem(phoneNumber, "");
+        formLayout.addFormItem(sendCode,"");
 
-        add(header, formLayout, sendCode);
+        add(header, formLayout);
         sendCode.addClickListener(buttonClickEvent -> {
 
             // sample

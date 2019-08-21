@@ -1,8 +1,7 @@
 core/Game/Quezz.class
 core/responseType.class
 core/Cache/cache$8.class
-core/service$1.class
-core/service$8.class
+core/Game/Credit.class
 core/Cache/cache$1.class
 core/IAM/authFunction.class
 com/packagename/myapp/backend/Category.class
@@ -10,11 +9,8 @@ core/Response.class
 core/Cache/cache$5.class
 front/ConfirmationDialog.class
 front/VerifyCode.class
-core/service$5.class
-core/service$4.class
 front/AbstractEditorDialog$Operation.class
 core/Cache/cache$4.class
-core/service.class
 core/Persisit/sqlCommand.class
 core/userInfo.class
 core/Game/QueezMaker.class
@@ -25,6 +21,7 @@ front/ReviewEditorDialog.class
 core/raceObj.class
 com/packagename/myapp/backend/StaticData.class
 core/Cache/cache$6.class
+front/RunService.class
 com/packagename/myapp/backend/CategoryService$1.class
 front/Profile.class
 front/AbstractEditorDialog.class
@@ -35,7 +32,6 @@ front/LongToStringEncoder.class
 com/packagename/myapp/backend/CategoryService$SingletonHolder.class
 core/Game/Surprise.class
 com/packagename/myapp/backend/ReviewService.class
-core/ServiceHandler.class
 com/packagename/myapp/backend/ReviewService$1.class
 front/Register.class
 front/LoadService.class
@@ -46,15 +42,9 @@ front/MainPage.class
 front/LocalDateToStringEncoder.class
 front/CategoriesList.class
 core/Cache/cache$7.class
-core/service$2.class
-core/service$7.class
 com/packagename/myapp/backend/CategoryService.class
 core/Cache/cache$2.class
-core/service$10.class
 front/Login.class
-core/service$9.class
 front/LogOut.class
-core/service$3.class
-core/service$6.class
 com/packagename/myapp/backend/Review.class
 core/IAM/sessionManager.class

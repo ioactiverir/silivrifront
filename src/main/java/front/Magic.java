@@ -9,20 +9,17 @@ import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
 import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.Page;
+import com.vaadin.flow.component.progressbar.ProgressBar;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
-import com.vaadin.flow.server.VaadinResponse;
 import com.vaadin.flow.server.VaadinService;
 import core.Cache.cache;
 import core.Game.Surprise;
@@ -30,10 +27,10 @@ import core.Response;
 import core.responseType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.vaadin.erik.TimerBar;
 
 import javax.servlet.http.Cookie;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Route(value = "magic", layout = MainLayout.class)
 @PageTitle("Profile Information")
@@ -47,11 +44,43 @@ public class Magic extends VerticalLayout {
     public Magic() {
 
         logger.info("==================== [New Magic]================");
+//        try {
+//            core.IAM.authFunction.validateAuthKey();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        AtomicReference<String> phoneNumber = new AtomicReference<>("");
         try {
-            core.IAM.authFunction.validateAuthKey();
+
+            Cookie[] authKeyValue = VaadinService.getCurrentRequest().getCookies();
+            for (Cookie cookie : authKeyValue) {
+                if (cookie.getName().equals("authKey")) {
+                    String readSessionValue = cookie.getValue();
+                    logger.info("verifying session {} value.", readSessionValue);
+                    if (cache.sessions.asMap().containsValue(readSessionValue)) {
+                        cache.sessions.asMap().forEach((k, v) -> {
+                            if (readSessionValue.equals(v)) {
+                                phoneNumber.set(k);
+                            }
+                        });
+                        logger.info("session validation successful.");
+                    } else {
+                        logger.error("Session is not valid or expired.");
+                        Page page = UI.getCurrent().getPage();
+                        page.executeJavaScript("redirectLocation('login')");
+                    }
+                }
+
+            }
         } catch (Exception e) {
-            e.printStackTrace();
+
+            logger.error("AutKey Null pointer exception...");
+            Page page = UI.getCurrent().getPage();
+            page.executeJavaScript("redirectLocation('login')");
+            //e.printStackTrace();
         }
+
+
         RouterLink magic = new RouterLink(null, MainPage.class);
         magic.add(new Icon(VaadinIcon.MAGIC), new Text("New"));
         magic.addClassName("main-layout__nav-item");
@@ -98,9 +127,6 @@ public class Magic extends VerticalLayout {
         } // end of for
 
 
-
-
-
         Surprise wizard = new Surprise();
         Response res = wizard.getSurprise();
         switch (res.getRespType()) {
@@ -110,11 +136,10 @@ public class Magic extends VerticalLayout {
                 Page page = UI.getCurrent().getPage();
 
 
-
                 FormLayout quizForm = new FormLayout();
                 String optionQu[] = res.getRespMessage().split(",");
 
-                TimerBar timerBar = new TimerBar(res.getRespTime() * 1000);
+                //               TimerBar timerBar = new TimerBar(res.getRespTime() * 1000);
 //
                 String qres = res.getQuezzRes();
 
@@ -122,39 +147,51 @@ public class Magic extends VerticalLayout {
                 String finalSessionAuthKeyValue = sessionAuthKeyValue;
                 logger.info("Queez info session {}: quzzSession {}"
                         , finalSessionAuthKeyValue, res.getRespId());
-                timerBar.addTimerEndedListener(e -> {
-                    logger.warn("Game Over!.");
-                    logger.info("revoke sessionId {}", finalSessionAuthKeyValue);
-                    cache.quizSession.invalidate(finalSessionAuthKeyValue);
-
-
-                }); //fixme leave page or revoke quiz
 
                 Button answer0 = new Button(optionQu[0]);
+                Button answer1 = new Button(optionQu[1]);
+                Button answer2 = new Button(optionQu[2]);
+//                timerBar.addTimerEndedListener(e -> {
+//                    answer0.setEnabled(false);
+//                    answer1.setEnabled(false);
+//                    answer2.setEnabled(false);
+//                    logger.warn("Game Over!.");
+//                    logger.info("revoke sessionId {}", finalSessionAuthKeyValue);
+//                    cache.quizSession.invalidate(finalSessionAuthKeyValue);
+//                }); //fixme leave page or revoke quiz
+
                 answer0.addClickListener(buttonClickEvent -> {
-//                    logger.info("buttom getText {}", answer0.getText());
                     if (answer0.getText().equals(qres)) {
                         //todo add balance, show messgage and go back main page
                         if (cache.quizSession.asMap().containsValue(res.getRespId())) {
                             cache.quizSession.invalidate(finalSessionAuthKeyValue);
                             logger.info("answer is success");
                             Notification.show(responseType.PUZZLE_DONE_SUCCESS);
-                            //      page.executeJavaScript("redirectLocation('magic')");
+                            //Disable other buttons
+                            answer1.setEnabled(false);
+                            answer2.setEnabled(false);
+                            logger.info("app credit {} to phone {}", 1400, phoneNumber.get());
+                            core.Game.Credit.appendUserCredit(phoneNumber.get(), 1400);
                         } else {
                             cache.quizSession.invalidate(finalSessionAuthKeyValue);
                             logger.warn("queez time is over.");
                             Notification.show("Game Over!");
+                            answer0.setEnabled(false);
+                            answer1.setEnabled(false);
+                            answer2.setEnabled(false);
+
                         }
                     } else {
                         cache.quizSession.invalidate(finalSessionAuthKeyValue);
                         logger.info("answer is not valid.");
                         Notification.show(responseType.PUZZLE_DONE_FAILED);
-                        //page.executeJavaScript("redirectLocation('magic')");
+                        answer0.setEnabled(false);
+                        answer1.setEnabled(false);
+                        answer2.setEnabled(false);
 
                     }
                 });
 
-                Button answer1 = new Button(optionQu[1]);
                 answer1.addClickListener(buttonClickEvent -> {
                     //                  logger.info("buttom getText {}", answer1.getText());
                     if (answer1.getText().equals(qres)) {
@@ -162,22 +199,31 @@ public class Magic extends VerticalLayout {
                             cache.quizSession.invalidate(finalSessionAuthKeyValue);
                             logger.info("answer is success");
                             Notification.show(responseType.PUZZLE_DONE_SUCCESS);
-                            //  page.executeJavaScript("redirectLocation('magic')");
+                            //Disable other buttons
+                            answer0.setEnabled(false);
+                            answer2.setEnabled(false);
+                            logger.info("app credit {} to phone {}", 1400, phoneNumber.get());
+                            core.Game.Credit.appendUserCredit(phoneNumber.get(), 1400);
                         } else {
                             cache.quizSession.invalidate(finalSessionAuthKeyValue);
                             logger.warn("queez time is over.");
                             Notification.show("Game Over!");
+                            answer0.setEnabled(false);
+                            answer1.setEnabled(false);
+                            answer2.setEnabled(false);
+
                         }
                     } else {
                         cache.quizSession.invalidate(finalSessionAuthKeyValue);
                         logger.info("answer is not valid.");
                         Notification.show(responseType.PUZZLE_DONE_FAILED);
-                        //page.executeJavaScript("redirectLocation('magic')");
+                        answer0.setEnabled(false);
+                        answer1.setEnabled(false);
+                        answer2.setEnabled(false);
 
                     }
                 });
 
-                Button answer2 = new Button(optionQu[2]);
                 answer2.addClickListener(buttonClickEvent -> {
                     //                logger.info("buttom getText {}", answer2.getText());
                     if (answer2.getText().equals(qres)) {
@@ -185,17 +231,27 @@ public class Magic extends VerticalLayout {
                             cache.quizSession.invalidate(finalSessionAuthKeyValue);
                             logger.info("answer is success");
                             Notification.show(responseType.PUZZLE_DONE_SUCCESS);
-                            // page.executeJavaScript("redirectLocation('magic')");
+                            //Disable other buttons
+                            answer0.setEnabled(false);
+                            answer1.setEnabled(false);
+                            logger.info("app credit {} to phone {}", 1400, phoneNumber.get());
+                            core.Game.Credit.appendUserCredit(phoneNumber.get(), 1400);
                         } else {
                             cache.quizSession.invalidate(finalSessionAuthKeyValue);
                             logger.warn("queez time is over.");
                             Notification.show("Game Over!");
+                            answer0.setEnabled(false);
+                            answer1.setEnabled(false);
+                            answer2.setEnabled(false);
+
                         }
                     } else {
                         cache.quizSession.invalidate(finalSessionAuthKeyValue);
                         logger.info("answer is not valid.");
                         Notification.show(responseType.PUZZLE_DONE_FAILED);
-                        //page.executeJavaScript("redirectLocation('magic')");
+                        answer0.setEnabled(false);
+                        answer1.setEnabled(false);
+                        answer2.setEnabled(false);
 
                     }
                 });
@@ -208,9 +264,11 @@ public class Magic extends VerticalLayout {
                 quizForm.addFormItem(answer0, "");
                 quizForm.addFormItem(answer1, "");
                 quizForm.addFormItem(answer2, "");
-                quizForm.addFormItem(timerBar, "Answer Time");
-                add(quizForm);
-               // timerBar.start();
+                //  quizForm.addFormItem(timerBar, "Answer Time");
+                ProgressBar progressBar = new ProgressBar();
+                progressBar.setIndeterminate(true);
+                add(quizForm, progressBar);
+                // timerBar.start();
                 break;
 
 

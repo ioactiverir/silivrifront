@@ -13,7 +13,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinService;
 import core.Cache.cache;
 import core.Persisit.sqlCommand;
-import core.userInfo;
+import core.DataModel.userInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -21,7 +21,6 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import javax.servlet.http.Cookie;
-import java.awt.*;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;

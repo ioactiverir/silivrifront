@@ -2,21 +2,16 @@ package core.Game;
 
 import com.vaadin.flow.server.VaadinService;
 import core.Cache.cache;
-import core.Response;
+import core.DataModel.Response;
 import core.Utility;
-import core.responseType;
-import front.MainPage;
+import core.DataModel.responseType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.http.Cookie;
-import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Random;
 
 public class Surprise {
@@ -52,7 +47,7 @@ public class Surprise {
 
         /* Select random gift, then send to the user.*/
         Random rnd = new Random();
-        int selectResp = 1; //rnd.nextInt(5);
+        int selectResp = rnd.nextInt(5);
         Response response = new Response();
         switch (selectResp) {
             case 0:

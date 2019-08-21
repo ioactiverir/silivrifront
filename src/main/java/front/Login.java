@@ -16,7 +16,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinResponse;
 import core.Cache.cache;
 import core.Utility;
-import core.responseType;
+import core.DataModel.responseType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

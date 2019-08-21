@@ -23,8 +23,8 @@ import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.server.VaadinService;
 import core.Cache.cache;
 import core.Game.Surprise;
-import core.Response;
-import core.responseType;
+import core.DataModel.Response;
+import core.DataModel.responseType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

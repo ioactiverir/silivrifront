@@ -9,6 +9,7 @@ public class QueezMaker {
         Random rndQuezz = new Random();
         int selectQuezz = rndQuezz.nextInt(2);
         String resp[];
+        String quizRandomId=Utility.getRandomID(50);
         switch (selectQuezz) {
             case 0:
 
@@ -25,6 +26,7 @@ public class QueezMaker {
                 simpleQuezz.setQuezzOptions(resp[1]);
                 simpleQuezz.setQuezzResult(resp[2]);
                 simpleQuezz.setQuezzCredit("1000");
+                simpleQuezz.setQuezzId(quizRandomId);
                 return simpleQuezz;
             case 1:
                 resp = Utility.generteQuezz(2);
@@ -41,6 +43,7 @@ public class QueezMaker {
                 mediumQuezz.setQuezzOptions(resp[1]);
                 mediumQuezz.setQuezzResult(resp[2]);
                 mediumQuezz.setQuezzCredit("2000");
+                mediumQuezz.setQuezzId(quizRandomId);
                 return mediumQuezz;
             case 2:
                 resp = Utility.generteQuezz(3);
@@ -56,6 +59,7 @@ public class QueezMaker {
                 complexQuezz.setQuezzOptions(resp[1]);
                 complexQuezz.setQuezzResult(resp[2]);
                 complexQuezz.setQuezzCredit("3000");
+                complexQuezz.setQuezzId(quizRandomId);
                 return complexQuezz;
         }
         //fuck!!!

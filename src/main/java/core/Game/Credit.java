@@ -1,9 +1,7 @@
 package core.Game;
 
-import core.Cache.cache;
 import core.Persisit.sqlCommand;
-import core.userInfo;
-import front.Profile;
+import core.DataModel.userInfo;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;

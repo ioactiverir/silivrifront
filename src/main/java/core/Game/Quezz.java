@@ -7,6 +7,12 @@ public class Quezz {
     private int quezzTime;
     private String quezzSubject;
     private String quezzMessage;
+    private String quezzId;
+    private String quezzResult;
+    private String quezzOptions;
+
+
+
 
     public String getQuezzId() {
         return quezzId;
@@ -16,8 +22,6 @@ public class Quezz {
         this.quezzId = quezzId;
     }
 
-    private String quezzId;
-
     public String getQuezzResult() {
         return quezzResult;
     }
@@ -25,8 +29,6 @@ public class Quezz {
     public void setQuezzResult(String quezzResult) {
         this.quezzResult = quezzResult;
     }
-
-    private String quezzResult;
 
     public String getQuezzMessage() {
         return quezzMessage;
@@ -51,8 +53,6 @@ public class Quezz {
     public void setQuezzOptions(String quezzOptions) {
         this.quezzOptions = quezzOptions;
     }
-
-    private String quezzOptions;
 
 
 

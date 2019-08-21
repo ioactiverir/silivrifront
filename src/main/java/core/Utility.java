@@ -1,10 +1,7 @@
 package core;
 
-import com.vaadin.flow.component.UI;
-import com.vaadin.flow.component.dependency.JavaScript;
-import com.vaadin.flow.component.page.Page;
 import core.Cache.cache;
-import front.MainPage;
+import core.DataModel.responseType;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -68,6 +65,19 @@ public class Utility {
         }
         return sb.toString();
     }
+    public static String getRandomID(int n) {
+
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvxyz";
+        StringBuilder sb = new StringBuilder(n);
+        for (int i = 0; i < n; i++) {
+            int index = (int) (AlphaNumericString.length()
+                    * Math.random());
+            sb.append(AlphaNumericString
+                    .charAt(index));
+        }
+        return sb.toString();
+    }
+
 
     public static String getRandomImage() {
         Random ran = new Random();
@@ -76,7 +86,9 @@ public class Utility {
     }
 
     public static String getRandomVideo() {
-        return "frontend\\src\\video\\b.mp4";
+        Random rnd=new Random();
+        int selectVideo=rnd.nextInt(4);
+        return "frontend\\src\\video\\"+selectVideo+".mp4";
     }
 
     public static String getRandomAudio() {

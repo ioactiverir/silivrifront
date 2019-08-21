@@ -61,7 +61,11 @@ public class MainPage extends Div {
 
             }
         }catch (Exception e){
-            e.printStackTrace();
+
+            logger.error("AutKey Null pointer exception...");
+            Page page = UI.getCurrent().getPage();
+            page.executeJavaScript("redirectLocation('login')");
+            //e.printStackTrace();
         }
 
 

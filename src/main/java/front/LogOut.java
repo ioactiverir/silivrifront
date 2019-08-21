@@ -26,33 +26,33 @@ public class LogOut extends VerticalLayout {
     private static Logger logger = LogManager.getLogger(LogOut.class);
 
     public LogOut() {
+        logger.info("Starting logout process.");
         Cookie[] authKeyValue = VaadinService.getCurrentRequest().getCookies();
         for (Cookie cookie : authKeyValue) {
             if (cookie.getName().equals("authKey")) {
-                String authKey = cookie.getValue();
-                logger.info("revoke authkey {}.", authKey);
-                String finalAuthKey = authKey;
+                logger.info("found authkey {}", cookie.getValue());
+                String finalAuthKey = cookie.getValue();
                 cache.sessions.asMap().forEach((k, v) -> {
-                    if (v.equals(finalAuthKey)) {
+                    if (v.equals(cookie.getValue())) {
                         //clean up everything.
+                        logger.info("lookup phone {} success. ", k);
                         cache.sessions.invalidate(k);
-                        try {
-                            logger.info("revoke quizSession {}",cache.quizSession.get(authKey));
-                        } catch (ExecutionException e) {
-                            e.printStackTrace();
+                        if (cache.quizSession.equals(k)){
+                            logger.info("revoke quizSession  for phone {}",k);
+                            cache.quizSession.invalidate(k);
+                        } else {
+                            logger.warn("not found enrty for  phone {} in quizSession",k);
                         }
-                        cache.quizSession.invalidate(authKey);
+
                     }
                 });
-
-
             }
         }
 
 
-        logger.info("redirect to main page.");
+        logger.info("redirect to login page.");
         Page page = UI.getCurrent().getPage();
-        page.executeJavaScript("redirectLocation('')");
+        page.executeJavaScript("redirectLocation('login')");
         //todo service should return metrics
     }
 }

@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7def833-4192-433c-9cdb-3e15362dfeb8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/front/LogOut.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/core/Game/Surprise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Game/Surprise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/IAM/authFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/IAM/authFunction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/responseType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/responseType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/core/service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/service.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/front/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/front/Magic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/Magic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/front/LogOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/LogOut.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/front/MainPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/MainPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/front/Profile.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/Profile.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/front/Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/front/VerifyCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/VerifyCode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -198,12 +188,12 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/front/LogOut.java</url>
-          <line>27</line>
+          <line>29</line>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/front/LogOut.java</url>
-          <line>45</line>
+          <line>53</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

@@ -49,7 +49,7 @@ public class authFunction {
                 AtomicBoolean authorzie = new AtomicBoolean(false);
                 try {
                     cache.sendCode.asMap().forEach((k, v) -> {
-                        if (k.equals(userPhone) && v.equals(SMS_Code)) {
+                        if (k.equals(userPhone) && v.equals(SMS_Code) ) {
                             authorzie.set(true);
                         } else {
                             authorzie.set(false);

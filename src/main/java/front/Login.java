@@ -7,6 +7,7 @@ import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -44,8 +45,12 @@ public class Login extends VerticalLayout {
         Div div = new Div();
         formLayout.addFormItem(div, "");
 
+        Image img=new Image("frontend/src/img/phone.png","mobile");
+        img.setHeight("auto");
+        img.setWidth("100%");
+        formLayout.addFormItem(img,"");
         Label banner = new Label();
-        banner.setText("Enter phone number and login the app.");
+        banner.setText("Enter Phone Number");
         formLayout.addFormItem(banner, "");
 
         TextField phoneNumber = new TextField();

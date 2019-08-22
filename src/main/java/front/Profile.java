@@ -12,8 +12,8 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.VaadinService;
 import core.Cache.cache;
-import core.Persisit.sqlCommand;
 import core.DataModel.userInfo;
+import core.Persisit.sqlCommand;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -21,11 +21,9 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import javax.servlet.http.Cookie;
-import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
-@Route(value = "profile", layout = MainLayout.class)
+@Route(value = "Profile", layout = MainLayout.class)
 @PageTitle("Profile")
 @JavaScript("frontend://src/javascripts/pageUtils.js")
 @Tag("profile")
@@ -82,7 +80,7 @@ public class Profile extends Div {
                         Label bankNo = new Label(employee.getBankNo());
                         Label creditValue = new Label(String.valueOf(employee.getUserCreditValue()));
                         resualtForm.addFormItem(firstName, "Name");
-                        resualtForm.addFormItem(lastName, "Fanily");
+                        resualtForm.addFormItem(lastName, "Family");
                         resualtForm.addFormItem(bankNo, "Bank Card");
                         resualtForm.addFormItem(creditValue, "Balance");
                         Button backButton = new Button();

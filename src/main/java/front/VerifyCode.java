@@ -7,6 +7,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -32,7 +33,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 
 @Route(value = "verify", layout = MainLayout.class)
-@PageTitle("verify Information")
+@PageTitle("Verify Code")
 @Tag("verify")
 @JavaScript("frontend://src/javascripts/pageUtils.js")
 public class VerifyCode extends VerticalLayout {
@@ -59,6 +60,11 @@ public class VerifyCode extends VerticalLayout {
                         header.addClassName("main-layout__header");
                         setSizeFull();
                         verifyForm.addFormItem(div, "");
+                        Image img=new Image("frontend/src/img/verification.png","mobile");
+                        img.setHeight("auto");
+                        img.setWidth("100%");
+                        verifyForm.addFormItem(img,"");
+
                         verifyForm.addFormItem(sms_Code_Text, "");
                         sms_Code_Text.setWidth("75%");
                         verifyForm.addFormItem(verify_button, "");

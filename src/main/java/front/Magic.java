@@ -4,11 +4,13 @@ import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -266,14 +268,15 @@ public class Magic extends VerticalLayout {
 
                             case "IMAGE":
                                 logger.info("response IAMGE");
+
+
                                 final Div div2 = new Div();
-                                final Div div3 = new Div();
                                 Html image = new Html("<div><img width=100%  height=auto src='" + res.getRespMediaLink() + "' alt='Bingooo'></div>");
                                 Random random = new Random();
 
                                 int viewCount = random.nextInt(100000); // todo get viewCount form K,V store then set to image info
-                                Html viewImage = new Html("<div><img   width=10%  height=auto src='frontend\\src\\img\\view.png' alt='Music'>" + viewCount + "</div>");
-                                add(image, viewImage);
+                                Html viewImage = new Html("<div><img  align=center width=10%  height=auto src='frontend\\src\\img\\view.png' alt='View'>" + viewCount + "</div>");
+                                add(div2,image, viewImage);
                                 break;
 
 

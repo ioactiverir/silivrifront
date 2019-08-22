@@ -8,15 +8,21 @@ import org.apache.logging.log4j.Logger;
 import java.io.File;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Base64;
-import java.util.List;
-import java.util.Random;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Utility {
     private static Logger logger = LogManager.getLogger(Utility.class);
 
+    public static String epochConvert(long time){
+        Date date = new Date(time);
+        DateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        format.setTimeZone(TimeZone.getTimeZone("UTC"));
+        String formatted=format.format(date);;
+        return formatted;
 
+    }
 
     public static String sha1(String input) throws NoSuchAlgorithmException {
         MessageDigest mDigest = MessageDigest.getInstance("SHA1");

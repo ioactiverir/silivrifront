@@ -16,6 +16,7 @@ import com.vaadin.flow.component.page.Viewport;
 import com.vaadin.flow.router.HighlightConditions;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.server.VaadinService;
 import core.Cache.cache;
 import org.apache.logging.log4j.LogManager;
@@ -29,6 +30,7 @@ import java.util.Random;
 @Route("")
 @HtmlImport("frontend://styles/shared-styles.html")
 @Viewport("width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
+
 @JavaScript("frontend://src/javascripts/pageUtils.js")
 
 public class MainPage extends Div {

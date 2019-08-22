@@ -18,7 +18,6 @@ core/Cache/cache.class
 front/ReviewEditorDialog.class
 com/packagename/myapp/backend/StaticData.class
 core/Cache/cache$6.class
-front/RunService.class
 com/packagename/myapp/backend/CategoryService$1.class
 core/DataModel/responseType.class
 front/Profile.class
@@ -47,5 +46,6 @@ front/Login.class
 front/LogOut.class
 core/DataModel/userInfo.class
 core/DataModel/Response.class
+core/Cache/cache$10.class
 com/packagename/myapp/backend/Review.class
 core/IAM/sessionManager.class

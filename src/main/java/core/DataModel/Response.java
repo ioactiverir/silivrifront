@@ -26,15 +26,15 @@ public class Response {
 
     private String quezzRes;
 
-    public int getRespTime() {
+    public long getRespTime() {
         return respTime;
     }
 
-    public void setRespTime(int respTime) {
+    public void setRespTime(long respTime) {
         this.respTime = respTime;
     }
 
-    private int respTime;
+    private long respTime;
     public String getRespMessage() {
         return respMessage;
     }

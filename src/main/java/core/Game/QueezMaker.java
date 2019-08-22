@@ -1,11 +1,14 @@
 package core.Game;
 
+import core.Cache.cache;
 import core.Utility;
+import org.junit.Test;
 
 import java.util.Random;
 
 public class QueezMaker {
     public Quezz queezBuidler() {
+        long quizBuildTime=0L;
         Random rndQuezz = new Random();
         int selectQuezz = rndQuezz.nextInt(2);
         String resp[];
@@ -34,16 +37,13 @@ public class QueezMaker {
                 mediumQuezz.setQuezzName("meduim");
                 mediumQuezz.setQuezzTime(10);
                 mediumQuezz.setQuezzType("math");
-//                        if (!cache.userCredit.asMap().containsKey(userPhone)) {
-//                            logger.info("user {} playing free", userPhone);
-//                            mediumQuezz.setQuezzMessage("Charge Account and get more gifts!");
-//                        }
 
                 mediumQuezz.setQuezzSubject(resp[0]);
                 mediumQuezz.setQuezzOptions(resp[1]);
                 mediumQuezz.setQuezzResult(resp[2]);
                 mediumQuezz.setQuezzCredit("2000");
                 mediumQuezz.setQuezzId(quizRandomId);
+
                 return mediumQuezz;
             case 2:
                 resp = Utility.generteQuezz(3);
@@ -51,10 +51,7 @@ public class QueezMaker {
                 complexQuezz.setQuezzName("complex");
                 complexQuezz.setQuezzTime(15);
                 complexQuezz.setQuezzType("math");
-//                        if (!cache.userCredit.asMap().containsKey(userPhone)) {
-//                            logger.info("user {} playing free", userPhone);
-//                            complexQuezz.setQuezzMessage("Charge Account and get more gifts!");
-//                        }
+
                 complexQuezz.setQuezzSubject(resp[0]);
                 complexQuezz.setQuezzOptions(resp[1]);
                 complexQuezz.setQuezzResult(resp[2]);

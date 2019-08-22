@@ -15,6 +15,7 @@ import com.vaadin.flow.component.page.Page;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.server.VaadinResponse;
 import core.Cache.cache;
 import core.Utility;
@@ -36,6 +37,7 @@ public class Login extends VerticalLayout {
     final Button sendCode = new Button("Request Code");
 
     public Login() {
+        logger.info("login request");
         setSizeFull();
         Div header = new Div();
         header.addClassName("main-layout__header");

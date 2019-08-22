@@ -4,13 +4,11 @@ import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.Text;
 import com.vaadin.flow.component.UI;
-import com.vaadin.flow.component.applayout.AppLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.HtmlImport;
 import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
-import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Label;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -27,11 +25,14 @@ import core.Cache.cache;
 import core.DataModel.Response;
 import core.DataModel.responseType;
 import core.Game.Surprise;
+import core.Utility;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.vaadin.erik.TimerBar;
 
 import javax.servlet.http.Cookie;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicLong;
 
 @Route(value = "magic", layout = MainLayout.class)
 @PageTitle("Magic")
@@ -44,7 +45,6 @@ public class Magic extends VerticalLayout {
     private String phoneNumber;
 
     public Magic() {
-
         try {
             Cookie[] authKeyValue = VaadinService.getCurrentRequest().getCookies();
             for (Cookie cookie : authKeyValue) {
@@ -56,10 +56,10 @@ public class Magic extends VerticalLayout {
                         /* main body */
 
                         // extract phoneNumber
-                        cache.sessions.asMap().forEach((k,v)->{
+                        cache.sessions.asMap().forEach((k, v) -> {
                             if (v.equals(getSessionValue)) {
-                                logger.info("lookup phone number {} for session {}",k, getSessionValue);
-                                phoneNumber=k;
+                                logger.info("lookup phone number {} for session {}", k, getSessionValue);
+                                phoneNumber = k;
                             }
                         });
 
@@ -123,19 +123,41 @@ public class Magic extends VerticalLayout {
                                 Button answer1 = new Button(optionQu[1]);
                                 Button answer2 = new Button(optionQu[2]);
                                 //fixme leave page or revoke quiz
+                                TimerBar timerBar=new TimerBar(res.getRespTime()*1000);
 
                                 answer0.addClickListener(buttonClickEvent -> {
                                     if (answer0.getText().equals(qres)) {
                                         //todo add balance, show messgage and go back main page
                                         if (cache.quizSession.asMap().containsValue(res.getRespId())) {
-                                            cache.quizSession.invalidate(finalSessionAuthKeyValue);
-                                            logger.info("answer is success");
-                                            Notification.show(responseType.PUZZLE_DONE_SUCCESS);
-                                            //Disable other buttons
-                                            answer1.setEnabled(false);
-                                            answer2.setEnabled(false);
-                                            logger.info("app credit {} to phone {}", 1400, phoneNumber);
-                                            core.Game.Credit.appendUserCredit(phoneNumber, 1400);
+                                            long getCurrentTime = System.currentTimeMillis();
+                                            logger.info("curent time {}", Utility.epochConvert(getCurrentTime));
+                                            logger.info("quizRandomId:{}", res.getRespId());
+                                            AtomicLong getQuizTime = new AtomicLong();
+                                            cache.quizTTL.asMap().forEach((k, v) -> {
+                                                //  logger.info("QuizTTL k:{} v:{} ",k,Utility.epochConvert(v));
+                                                if (k.equals(res.getRespId())) {
+                                                    getQuizTime.set(v);
+                                                }
+                                            });
+                                            logger.info("lookup quizTimeStamp {}", Utility.epochConvert(getQuizTime.get()));
+                                            long duration = ((getCurrentTime - getQuizTime.get())/1000);
+                                            logger.info("duration: {} secend.", duration);
+                                            logger.info("time to answer: {} second.",res.getRespTime());
+                                            if (duration < res.getRespTime()) {
+                                                logger.info("invalidate quizTTL {}", res.getRespId());
+                                                cache.quizTTL.invalidate(res.getRespId());
+                                                cache.quizSession.invalidate(finalSessionAuthKeyValue);
+                                                logger.info("answer is success");
+                                                Notification.show(responseType.PUZZLE_DONE_SUCCESS);
+                                                //Disable other buttons
+                                                answer1.setEnabled(false);
+                                                answer2.setEnabled(false);
+                                                logger.info("app credit {} to phone {}", 1400, phoneNumber);
+                                                core.Game.Credit.appendUserCredit(phoneNumber, 1400);
+                                                timerBar.stop();
+                                            } else {
+                                                Notification.show("Time expired!");
+                                            }
                                         } else {
                                             cache.quizSession.invalidate(finalSessionAuthKeyValue);
                                             logger.warn("queez time is over.");
@@ -229,10 +251,9 @@ public class Magic extends VerticalLayout {
                                 quizForm.addFormItem(answer1, "");
                                 quizForm.addFormItem(answer2, "");
                                 //  quizForm.addFormItem(timerBar, "Answer Time");
-                                ProgressBar progressBar = new ProgressBar();
-                                progressBar.setIndeterminate(true);
-                                add(quizForm, progressBar);
-                                // timerBar.start();
+
+                                add(quizForm, timerBar);
+                                timerBar.start();
                                 break;
 
 
@@ -276,19 +297,19 @@ public class Magic extends VerticalLayout {
 
                                 int viewCount = random.nextInt(100000); // todo get viewCount form K,V store then set to image info
                                 Html viewImage = new Html("<div><img  align=center width=10%  height=auto src='frontend\\src\\img\\view.png' alt='View'>" + viewCount + "</div>");
-                                add(div2,image, viewImage);
+                                add(div2, image, viewImage);
                                 break;
 
 
                         }
 
                         /*main body*/
-                    }  else {
-                    logger.error("Session {} is not valid or expired.",getSessionValue);
-                    Page page = UI.getCurrent().getPage();
-                    logger.info("redirect to login page");
-                    page.executeJavaScript("redirectLocation('login')");
-                }
+                    } else {
+                        logger.error("Session {} is not valid or expired.", getSessionValue);
+                        Page page = UI.getCurrent().getPage();
+                        logger.info("redirect to login page");
+                        page.executeJavaScript("redirectLocation('login')");
+                    }
                 }
             }
         } catch (Exception e) {
@@ -297,6 +318,21 @@ public class Magic extends VerticalLayout {
             logger.info("redirect to login page");
             page.executeJavaScript("redirectLocation('login')");
         }
+
+
+    }
+
+    public static void main(String[] args) {
+        long getCurrentTime = System.currentTimeMillis();
+        System.out.println(Utility.epochConvert(getCurrentTime));
+        try {
+            Thread.sleep(5000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        long getCurrentTime1 = System.currentTimeMillis();
+        System.out.println(Utility.epochConvert(getCurrentTime1));
+        System.out.println((getCurrentTime1 - getCurrentTime)/1000 );
 
 
     }

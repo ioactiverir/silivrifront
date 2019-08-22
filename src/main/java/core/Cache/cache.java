@@ -102,6 +102,16 @@ public class cache {
 
 
 
+    // map of quizID, quizTimeStamp
+    public static final  LoadingCache<String,Long> quizTTL = CacheBuilder.newBuilder()
+            .build(new CacheLoader<String,Long>() {
+
+                @Override
+                public Long load(String s) throws Exception {
+                    return null;
+                }
+            });
+
 
 
 }

@@ -47,7 +47,7 @@ public class Surprise {
 
         /* Select random gift, then send to the user.*/
         Random rnd = new Random();
-        int selectResp = 4; //rnd.nextInt(5);
+        int selectResp =1; // rnd.nextInt(5);
         Response response = new Response();
         switch (selectResp) {
             case 0:
@@ -67,6 +67,10 @@ public class Surprise {
                 response.setRespTime(qu.getQuezzTime());
                 response.setQuezzRes(qu.getQuezzResult());
                 response.setRespId(qu.getQuezzId());
+                // get time and append in cache to record quizTTL
+                long quizBuildTime = System.currentTimeMillis();
+                cache.quizTTL.put(qu.getQuezzId(),quizBuildTime);
+                response.setRespTime(qu.getQuezzTime());
                 response.setRespMediaLink("NULL");
                 // set queezId to current user.
                 cache.quizSession.put(sessionAuthKeyValue, queezId);

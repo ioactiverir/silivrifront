@@ -35,96 +35,75 @@ public class MainPage extends Div {
     private static Logger logger = LogManager.getLogger(MainPage.class);
 
     public MainPage() {
-
-//        try {
-//            core.IAM.authFunction.validateAuthKey();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-
         try {
-
             Cookie[] authKeyValue = VaadinService.getCurrentRequest().getCookies();
             for (Cookie cookie : authKeyValue) {
                 if (cookie.getName().equals("authKey")) {
                     String readSessionValue = cookie.getValue();
                     logger.info("verifying session {} value.", readSessionValue);
                     if (cache.sessions.asMap().containsValue(readSessionValue)) {
-                        logger.info("session validation successful.");
+                        logger.info("session {} validation successful.",readSessionValue);
+                        /* main body*/
+
+                        H1 title = new H1("");
+                        title.addClassName("main-layout__title");
+
+                        RouterLink magic = new RouterLink(null, Magic.class);
+                        magic.add(new Icon(VaadinIcon.MAGIC), new Text("New"));
+                        magic.addClassName("main-layout__nav-item");
+                        magic.setHighlightCondition(HighlightConditions.sameLocation());
+
+                        RouterLink categories = new RouterLink(null, CategoriesList.class);
+                        categories.add(new Icon(VaadinIcon.CASH), new Text("Money"));
+                        categories.addClassName("main-layout__nav-item");
+
+
+                        RouterLink profile = new RouterLink(null, Profile.class);
+                        profile.add(new Icon(VaadinIcon.USER), new Text("Profile"));
+                        profile.addClassName("main-layout__nav-item");
+
+
+                        RouterLink logout = new RouterLink(null, LogOut.class);
+                        logout.add(new Icon(VaadinIcon.SIGN_OUT), new Text("Logout"));
+                        logout.addClassName("main-layout__nav-item");
+
+
+                        Div navigation = new Div(magic, categories, profile, logout);
+                        navigation.addClassName("main-layout__nav");
+
+                        Div header = new Div(title, navigation);
+                        header.addClassName("main-layout__header");
+
+                        ArrayList<String> wizardList = Lists.newArrayList("magic1.gif",
+                                "magic2.gif",
+                                "magic3.gif",
+                                "magic4.gif",
+                                "magic5.gif");
+
+                        Random rnd = new Random();
+                        int selectItem = rnd.nextInt(4);
+                        Html magicBox = new Html("<div><br><a href='/magic'><img  align='center' width=100%  height=auto src='frontend\\src\\img\\" + wizardList.get(selectItem) + "' alt='Music'></a></div>");
+                        add(header, magicBox);
+
+                        addClassName("main-layout");
+
+                        /* main body*/
+
                     } else {
-                        logger.error("Session is not valid or expired.");
+                        logger.error("Session {} is not valid or expired.",readSessionValue);
                         Page page = UI.getCurrent().getPage();
+                        logger.info("redirect to login page");
                         page.executeJavaScript("redirectLocation('login')");
                     }
                 }
 
             }
-        }catch (Exception e){
-
-            logger.error("AutKey Null pointer exception...");
+        } catch (Exception e) {
+            logger.error("AutKey null pointer exception.");
             Page page = UI.getCurrent().getPage();
+            logger.info("redirect to login page");
             page.executeJavaScript("redirectLocation('login')");
-            //e.printStackTrace();
         }
-
-
-
-
-
-
-
-
-
-
-
-        H1 title = new H1("");
-        title.addClassName("main-layout__title");
-
-        RouterLink magic = new RouterLink(null,Magic.class);
-        magic.add(new Icon(VaadinIcon.MAGIC), new Text("New"));
-        magic.addClassName("main-layout__nav-item");
-        // Only show as active for the exact URL, but not for sub paths
-        magic.setHighlightCondition(HighlightConditions.sameLocation());
-
-        RouterLink categories = new RouterLink(null, CategoriesList.class);
-        categories.add(new Icon(VaadinIcon.CASH), new Text("Money"));
-        categories.addClassName("main-layout__nav-item");
-
-
-        RouterLink profile = new RouterLink(null, Profile.class);
-        profile.add(new Icon(VaadinIcon.USER), new Text("Profile"));
-        profile.addClassName("main-layout__nav-item");
-
-
-        RouterLink logout = new RouterLink(null, LogOut.class);
-        logout.add(new Icon(VaadinIcon.SIGN_OUT), new Text("Logout"));
-        logout.addClassName("main-layout__nav-item");
-
-
-        Div navigation = new Div(magic, categories, profile, logout);
-        navigation.addClassName("main-layout__nav");
-
-        Div header = new Div(title, navigation);
-        header.addClassName("main-layout__header");
-
-// add magic box here
-        ArrayList<String> wizardList= Lists.newArrayList("magic1.gif",
-                "magic2.gif",
-                "magic3.gif",
-                "magic4.gif",
-                "magic5.gif");
-
-        Random rnd=new Random();
-        int selectItem=rnd.nextInt(4);
-        Html magicBox = new Html("<div><br><a href='/magic'><img  align='center' width=100%  height=auto src='frontend\\src\\img\\"+ wizardList.get(selectItem) +"' alt='Music'></a></div>");
-        add(header,magicBox);
-
-        addClassName("main-layout");
-
-//        Page page = UI.getCurrent().getPage();
-//        page.executeJavaScript("redirectLocation('magic')");
-
     }
 }
 

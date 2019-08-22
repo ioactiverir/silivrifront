@@ -8,6 +8,7 @@ import com.vaadin.flow.component.dependency.JavaScript;
 import com.vaadin.flow.component.formlayout.FormLayout;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.Label;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.page.Page;
 import com.vaadin.flow.component.textfield.TextField;
@@ -24,7 +25,7 @@ import javax.servlet.http.Cookie;
 
 
 @Route(value = "login", layout = MainLayout.class)
-@PageTitle("login Information")
+@PageTitle("Login")
 @Tag("login")
 @HtmlImport("frontend://styles/shared-styles.html")
 @JavaScript("frontend://src/javascripts/pageUtils.js")
@@ -40,40 +41,43 @@ public class Login extends VerticalLayout {
 
         FormLayout formLayout = new FormLayout();
 
-        Div div=new Div();
-        formLayout.addFormItem(div,"");
+        Div div = new Div();
+        formLayout.addFormItem(div, "");
 
-        Label banner=new Label();
+        Label banner = new Label();
         banner.setText("Enter phone number and login the app.");
-        formLayout.addFormItem(banner,"");
+        formLayout.addFormItem(banner, "");
 
         TextField phoneNumber = new TextField();
         phoneNumber.setWidth("75%");
         formLayout.addFormItem(phoneNumber, "");
-        formLayout.addFormItem(sendCode,"");
+        formLayout.addFormItem(sendCode, "");
 
         add(header, formLayout);
         sendCode.addClickListener(buttonClickEvent -> {
-
-            // sample
-            String authKey = core.Utility.getauthKeyID(responseType.SESSION_SIZE);
-            logger.info("session resptype size {}",responseType.SESSION_SIZE);
+            //todo regx that validate phone number
             String phone = phoneNumber.getValue();
-            Cookie cookies = new Cookie("authKey", authKey);
-            VaadinResponse.getCurrent().addCookie(cookies);
+            if (!phone.isEmpty()) {
+                String authKey = core.Utility.getauthKeyID(responseType.SESSION_SIZE);
+                logger.info("tmp session resptype size {}", responseType.SESSION_SIZE);
+                Cookie cookies = new Cookie("authKey", authKey);
+                VaadinResponse.getCurrent().addCookie(cookies);
 
-            cache.sessions.put(phone, authKey);
-            logger.info("set autkey {} for phone {}", authKey, phone);
+                cache.tmpSessions.put(phone, authKey);
+                logger.info("set tmp autkey {} for phone {}", authKey, phone);
 
-            String code = Utility.getSMSCode();
-            logger.info("set sms code {} for phone {}", code, phone);
-            cache.sendCode.put(phone, code);
+                String code = Utility.getSMSCode();
+                logger.info("set sms code {} for phone {}", code, phone);
+                cache.sendCode.put(phone, code);
 
-            // todo call sms gateway  and code.
-            logger.info("forward to verify sms code page");
+                // todo call sms gateway  and code.
+                logger.info("forward to verify sms code page");
 
-            Page page = UI.getCurrent().getPage();
-            page.executeJavaScript("redirectLocation('verify')");
+                Page page = UI.getCurrent().getPage();
+                page.executeJavaScript("redirectLocation('verify')");
+            } else {
+                Notification.show("Enter valid phone number");
+            }
         });
 
     }

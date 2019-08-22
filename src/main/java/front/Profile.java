@@ -32,80 +32,84 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class Profile extends Div {
     private static Logger logger = LogManager.getLogger(Profile.class);
+    private String phoneNumber;
 
-    public Profile() throws Exception {
-        try {
-            core.IAM.authFunction.validateAuthKey();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    public Profile() {
 
         userInfo employee = new userInfo();
-        try { //
+        try {
             Cookie[] authKeyValue = VaadinService.getCurrentRequest().getCookies();
             for (Cookie cookie : authKeyValue) {
                 if (cookie.getName().equals("authKey")) {
-                    String getAuthKey = cookie.getValue();
-                    logger.info("get AutKey value {}", getAuthKey);
-                    // show profile here
-                    Transaction transaction = null;
-                    try (Session session = sqlCommand.getSessionFactory().openSession()) {
-                        transaction = session.beginTransaction();
-
-                        String hql = "FROM userInfo E WHERE E.phoneNumber = :userPhone";
-                        Query query = session.createQuery(hql);
-                        // extarct user phone form session
-                        AtomicReference<String> getUserPhone = new AtomicReference<>("");
+                    String getSessionValue = cookie.getValue();
+                    logger.info("verifying session {} value.", getSessionValue);
+                    if (cache.sessions.asMap().containsValue(getSessionValue)) {
+                        logger.info("session {} validation successful.", getSessionValue);
+                        // extract phoneNumber
                         cache.sessions.asMap().forEach((k, v) -> {
-                            if (v.equals(cookie.getValue())) {
-                                logger.info("session {} for phone {} matched.", cookie.getValue(), k);
-                                getUserPhone.set(k);
+                            if (v.equals(getSessionValue)) {
+                                logger.info("lookup phone number {} for session {}", k, getSessionValue);
+                                phoneNumber = k;
                             }
                         });
-                        query.setParameter("userPhone", getUserPhone.get());
-                        List qq = query.list();
-                        for (Iterator iterator1 = qq.iterator(); iterator1.hasNext(); ) {
-                            employee = (userInfo) iterator1.next();
-                            logger.info(" Lookup phone {} sucecess.", employee.getPhoneNumber());
+                        /* main body */
+                        Transaction transaction = null;
+                        try (Session session = sqlCommand.getSessionFactory().openSession()) {
+                            transaction = session.beginTransaction();
+
+                            String hql = "FROM userInfo E WHERE E.phoneNumber = :userPhone";
+                            Query query = session.createQuery(hql);
+                            query.setParameter("userPhone", phoneNumber);
+                            List qq = query.list();
+                            for (Object o : qq) {
+                                employee = (userInfo) o;
+                                logger.info(" Lookup phone {} sucecess.", employee.getPhoneNumber());
+                            }
+                            // commit transaction
+                            transaction.commit();
+                            session.close();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            if (transaction != null) {
+                                transaction.rollback();
+                            }
+                            e.printStackTrace();
                         }
-                        // commit transaction
-                        transaction.commit();
-                        session.close();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                        if (transaction != null) {
-                            transaction.rollback();
-                        }
-                        e.printStackTrace();
-                    }
-                    logger.info("find  user phone {}", employee.getPhoneNumber());
-                    FormLayout resualtForm = new FormLayout();
-                    Label firstName = new Label(employee.getUserFirstName());
-                    Label lastName = new Label(employee.getUserLastName());
-                    Label bankNo = new Label(employee.getBankNo());
-                    Label creditValue = new Label(String.valueOf(employee.getUserCreditValue()));
-                    resualtForm.addFormItem(firstName, "Name");
-                    resualtForm.addFormItem(lastName, "Fanily");
-                    resualtForm.addFormItem(bankNo, "Bank Card");
-                    resualtForm.addFormItem(creditValue, "Balance");
-                    Button backButton = new Button();
-                    backButton.setText("Back");
-                    resualtForm.addFormItem(backButton, "");
-                    add(resualtForm);
-                    backButton.addClickListener(buttonClickEvent -> {
-                        logger.info("back to main page");
+                        logger.info("find  user phone {}", employee.getPhoneNumber());
+                        FormLayout resualtForm = new FormLayout();
+                        Label firstName = new Label(employee.getUserFirstName());
+                        Label lastName = new Label(employee.getUserLastName());
+                        Label bankNo = new Label(employee.getBankNo());
+                        Label creditValue = new Label(String.valueOf(employee.getUserCreditValue()));
+                        resualtForm.addFormItem(firstName, "Name");
+                        resualtForm.addFormItem(lastName, "Fanily");
+                        resualtForm.addFormItem(bankNo, "Bank Card");
+                        resualtForm.addFormItem(creditValue, "Balance");
+                        Button backButton = new Button();
+                        backButton.setText("Back");
+                        resualtForm.addFormItem(backButton, "");
+                        add(resualtForm);
+                        backButton.addClickListener(buttonClickEvent -> {
+                            logger.info("back to main page");
+                            Page page = UI.getCurrent().getPage();
+                            page.executeJavaScript("redirectLocation('')");
+
+                        });
+                        /* main body*/
+                    } else {
+                        logger.error("Session {} is not valid or expired.", getSessionValue);
                         Page page = UI.getCurrent().getPage();
-                        page.executeJavaScript("redirectLocation('')");
-
-                    });
+                        logger.info("redirect to login page");
+                        page.executeJavaScript("redirectLocation('login')");
+                    }
                 }
-
             }
-
-        } catch (Exception e) { //
-            e.printStackTrace();
-            setText(String.format("Error 500"));
+        } catch (Exception e) {
+            logger.error("AutKey null pointer exception.");
+            Page page = UI.getCurrent().getPage();
+            logger.info("redirect to login page");
+            page.executeJavaScript("redirectLocation('login')");
         }
-    }
 
+    }
 }

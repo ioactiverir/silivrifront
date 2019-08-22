@@ -11,6 +11,7 @@ front/AbstractEditorDialog$Operation.class
 core/Cache/cache$4.class
 core/Persisit/sqlCommand.class
 core/Game/QueezMaker.class
+core/Cache/cache$9.class
 front/ReviewsList.class
 front/CategoryEditorDialog.class
 core/Cache/cache.class

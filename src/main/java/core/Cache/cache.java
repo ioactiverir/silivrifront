@@ -41,6 +41,17 @@ public class cache {
 
     // keep sessions, map of userPhone & sessionID (cookie)
     public static final  LoadingCache<String, String> sessions = CacheBuilder.newBuilder()
+            .expireAfterWrite(60,TimeUnit.DAYS)
+            .build(new CacheLoader<String, String>() {
+                @Override
+                public String load(String s) throws Exception {
+                    return null;
+                }
+            });
+
+    // keep tmp sessions, map of userPhone & sessionID (cookie)
+    public static final  LoadingCache<String, String> tmpSessions = CacheBuilder.newBuilder()
+            .expireAfterWrite(1,TimeUnit.HOURS)
             .build(new CacheLoader<String, String>() {
                 @Override
                 public String load(String s) throws Exception {

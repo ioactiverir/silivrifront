@@ -63,8 +63,26 @@ public class Utility {
             sb.append(AlphaNumericString
                     .charAt(index));
         }
-        return sb.toString();
+        if (isSessionIdUnique(sb.toString())) {
+            return sb.toString();
+        } else {
+            //fixme So..., What's the next plan?
+            return sb.toString();
+        }
     }
+
+    public static boolean isSessionIdUnique(String sessionID){
+        boolean uniqueStatus;
+        if (!cache.sessions.asMap().containsValue(sessionID)){
+            uniqueStatus=true;
+            logger.info("session ID is unique.");
+        } else {
+            uniqueStatus=false;
+            logger.error("find duplicated session ID");
+        }
+        return uniqueStatus;
+    }
+
     public static String getRandomID(int n) {
 
         String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvxyz";
@@ -99,7 +117,7 @@ public class Utility {
     public static String getRandomText() {
         //todo read data from DB and load in cache has been initialized during service startup
         Random rnd = new Random();
-        int getRnadomContent = rnd.nextInt(2);
+        int getRnadomContent = rnd.nextInt(3);
         List textList = new ArrayList();
         textList.add("2KjYp9mE2KfYqtixINin2LIg2LPYsdi52Kog2YbZiNixINmF24zYr9mI2YbbjCDahtuM2Ycg2J8K2LPYsdi52Kog2KzZhdi5INmIINis2YjYsSDZg9ix2K/ZhiDYrtmI2YbZhyDYr9ixINmF2YjYp9is2YfZhyDYqNinINmF2YfZhdin2YYg2LPYsdiy2K/ZhyA6KSk=");
         textList.add("2KjZhyDYr9mI2LPYqtmFINmF24wg2q/ZhSDaqduM2YEg2b7ZiNmE2Kog2obZgtiv2LEg2YLYtNmG2q/ZhwrZhduMINqv2Ycg2obYsdmFINmF2LTZh9ivINi52YXZiNmFINin2LIg2KLZhNmF2KfZhiDYqNix2KfZhSDYotmI2LHYr9mHIQ==");

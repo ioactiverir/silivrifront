@@ -32,6 +32,7 @@ com/packagename/myapp/backend/ReviewService.class
 com/packagename/myapp/backend/ReviewService$1.class
 front/Register.class
 front/LoadService.class
+front/Service.class
 front/Magic.class
 core/Utility.class
 front/MainLayout.class

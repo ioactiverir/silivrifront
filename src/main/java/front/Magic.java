@@ -123,11 +123,10 @@ public class Magic extends VerticalLayout {
                                 Button answer1 = new Button(optionQu[1]);
                                 Button answer2 = new Button(optionQu[2]);
                                 //fixme leave page or revoke quiz
-                                TimerBar timerBar=new TimerBar(res.getRespTime()*1000);
+                                TimerBar timerBar = new TimerBar(res.getRespTime() * 1000);
 
                                 answer0.addClickListener(buttonClickEvent -> {
                                     if (answer0.getText().equals(qres)) {
-                                        //todo add balance, show messgage and go back main page
                                         if (cache.quizSession.asMap().containsValue(res.getRespId())) {
                                             long getCurrentTime = System.currentTimeMillis();
                                             logger.info("curent time {}", Utility.epochConvert(getCurrentTime));
@@ -140,9 +139,9 @@ public class Magic extends VerticalLayout {
                                                 }
                                             });
                                             logger.info("lookup quizTimeStamp {}", Utility.epochConvert(getQuizTime.get()));
-                                            long duration = ((getCurrentTime - getQuizTime.get())/1000);
+                                            long duration = ((getCurrentTime - getQuizTime.get()) / 1000);
                                             logger.info("duration: {} secend.", duration);
-                                            logger.info("time to answer: {} second.",res.getRespTime());
+                                            logger.info("time to answer: {} second.", res.getRespTime());
                                             if (duration < res.getRespTime()) {
                                                 logger.info("invalidate quizTTL {}", res.getRespId());
                                                 cache.quizTTL.invalidate(res.getRespId());
@@ -152,8 +151,8 @@ public class Magic extends VerticalLayout {
                                                 //Disable other buttons
                                                 answer1.setEnabled(false);
                                                 answer2.setEnabled(false);
-                                                logger.info("app credit {} to phone {}", 1400, phoneNumber);
-                                                core.Game.Credit.appendUserCredit(phoneNumber, 1400);
+                                                logger.info("app credit {} to phone {}", 100, phoneNumber);
+                                                core.Game.Credit.appendUserCredit(phoneNumber, 100);
                                                 timerBar.stop();
                                             } else {
                                                 Notification.show("Time expired!");
@@ -182,14 +181,35 @@ public class Magic extends VerticalLayout {
                                     //                  logger.info("buttom getText {}", answer1.getText());
                                     if (answer1.getText().equals(qres)) {
                                         if (cache.quizSession.asMap().containsValue(res.getRespId())) {
-                                            cache.quizSession.invalidate(finalSessionAuthKeyValue);
-                                            logger.info("answer is success");
-                                            Notification.show(responseType.PUZZLE_DONE_SUCCESS);
-                                            //Disable other buttons
-                                            answer0.setEnabled(false);
-                                            answer2.setEnabled(false);
-                                            logger.info("app credit {} to phone {}", 1400, phoneNumber);
-                                            core.Game.Credit.appendUserCredit(phoneNumber, 1400);
+                                            long getCurrentTime = System.currentTimeMillis();
+                                            logger.info("curent time {}", Utility.epochConvert(getCurrentTime));
+                                            logger.info("quizRandomId:{}", res.getRespId());
+                                            AtomicLong getQuizTime = new AtomicLong();
+                                            cache.quizTTL.asMap().forEach((k, v) -> {
+                                                //  logger.info("QuizTTL k:{} v:{} ",k,Utility.epochConvert(v));
+                                                if (k.equals(res.getRespId())) {
+                                                    getQuizTime.set(v);
+                                                }
+                                            });
+                                            logger.info("lookup quizTimeStamp {}", Utility.epochConvert(getQuizTime.get()));
+                                            long duration = ((getCurrentTime - getQuizTime.get()) / 1000);
+                                            logger.info("duration: {} secend.", duration);
+                                            logger.info("time to answer: {} second.", res.getRespTime());
+                                            if (duration < res.getRespTime()) {
+                                                logger.info("invalidate quizTTL {}", res.getRespId());
+                                                cache.quizTTL.invalidate(res.getRespId());
+                                                cache.quizSession.invalidate(finalSessionAuthKeyValue);
+                                                logger.info("answer is success");
+                                                Notification.show(responseType.PUZZLE_DONE_SUCCESS);
+                                                //Disable other buttons
+                                                answer0.setEnabled(false);
+                                                answer2.setEnabled(false);
+                                                logger.info("app credit {} to phone {}", 100, phoneNumber);
+                                                core.Game.Credit.appendUserCredit(phoneNumber, 100);
+                                                timerBar.stop();
+                                            } else {
+                                                Notification.show("Time expired!");
+                                            }
                                         } else {
                                             cache.quizSession.invalidate(finalSessionAuthKeyValue);
                                             logger.warn("queez time is over.");
@@ -214,14 +234,35 @@ public class Magic extends VerticalLayout {
                                     //                logger.info("buttom getText {}", answer2.getText());
                                     if (answer2.getText().equals(qres)) {
                                         if (cache.quizSession.asMap().containsValue(res.getRespId())) {
-                                            cache.quizSession.invalidate(finalSessionAuthKeyValue);
-                                            logger.info("answer is success");
-                                            Notification.show(responseType.PUZZLE_DONE_SUCCESS);
-                                            //Disable other buttons
-                                            answer0.setEnabled(false);
-                                            answer1.setEnabled(false);
-                                            logger.info("app credit {} to phone {}", 1400, phoneNumber);
-                                            core.Game.Credit.appendUserCredit(phoneNumber, 1400);
+                                            long getCurrentTime = System.currentTimeMillis();
+                                            logger.info("curent time {}", Utility.epochConvert(getCurrentTime));
+                                            logger.info("quizRandomId:{}", res.getRespId());
+                                            AtomicLong getQuizTime = new AtomicLong();
+                                            cache.quizTTL.asMap().forEach((k, v) -> {
+                                                //  logger.info("QuizTTL k:{} v:{} ",k,Utility.epochConvert(v));
+                                                if (k.equals(res.getRespId())) {
+                                                    getQuizTime.set(v);
+                                                }
+                                            });
+                                            logger.info("lookup quizTimeStamp {}", Utility.epochConvert(getQuizTime.get()));
+                                            long duration = ((getCurrentTime - getQuizTime.get()) / 1000);
+                                            logger.info("duration: {} secend.", duration);
+                                            logger.info("time to answer: {} second.", res.getRespTime());
+                                            if (duration < res.getRespTime()) {
+                                                logger.info("invalidate quizTTL {}", res.getRespId());
+                                                cache.quizTTL.invalidate(res.getRespId());
+                                                cache.quizSession.invalidate(finalSessionAuthKeyValue);
+                                                logger.info("answer is success");
+                                                Notification.show(responseType.PUZZLE_DONE_SUCCESS);
+                                                //Disable other buttons
+                                                answer0.setEnabled(false);
+                                                answer1.setEnabled(false);
+                                                logger.info("app credit {} to phone {}", 100, phoneNumber);
+                                                core.Game.Credit.appendUserCredit(phoneNumber, 100);
+                                                timerBar.stop();
+                                            } else {
+                                                Notification.show("Time expired!");
+                                            }
                                         } else {
                                             cache.quizSession.invalidate(finalSessionAuthKeyValue);
                                             logger.warn("queez time is over.");
@@ -318,21 +359,6 @@ public class Magic extends VerticalLayout {
             logger.info("redirect to login page");
             page.executeJavaScript("redirectLocation('login')");
         }
-
-
-    }
-
-    public static void main(String[] args) {
-        long getCurrentTime = System.currentTimeMillis();
-        System.out.println(Utility.epochConvert(getCurrentTime));
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        long getCurrentTime1 = System.currentTimeMillis();
-        System.out.println(Utility.epochConvert(getCurrentTime1));
-        System.out.println((getCurrentTime1 - getCurrentTime)/1000 );
 
 
     }

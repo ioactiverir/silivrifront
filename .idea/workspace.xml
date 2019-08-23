@@ -2,10 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7def833-4192-433c-9cdb-3e15362dfeb8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/front/Service.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/core/Note" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/offTheLine.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/offline.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/front/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/front/Magic.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/Magic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/front/MainLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/front/MainLayout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/frontend/styles/shared-styles.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/frontend/styles/shared-styles.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,10 +24,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Designer2Companion" />
         <option value="HTML File" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="Designer2Companion" />
       </list>
     </option>
   </component>
@@ -48,7 +53,13 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1565215381703" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../layi/Solutions/pom.xml" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/webapp" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/frontend" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">

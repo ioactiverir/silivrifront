@@ -110,8 +110,6 @@ public class Magic extends VerticalLayout {
                                 FormLayout quizForm = new FormLayout();
                                 String optionQu[] = res.getRespMessage().split(",");
 
-                                //               TimerBar timerBar = new TimerBar(res.getRespTime() * 1000);
-//
                                 String qres = res.getQuezzRes();
 
                                 logger.info("Quiz valid answer is a {}", qres);
@@ -152,6 +150,7 @@ public class Magic extends VerticalLayout {
                                                 answer1.setEnabled(false);
                                                 answer2.setEnabled(false);
                                                 logger.info("app credit {} to phone {}", 100, phoneNumber);
+                                                // todo read and set creditValue per quiz, we assumed fixed value
                                                 core.Game.Credit.appendUserCredit(phoneNumber, 100);
                                                 timerBar.stop();
                                             } else {
@@ -178,7 +177,6 @@ public class Magic extends VerticalLayout {
                                 });
 
                                 answer1.addClickListener(buttonClickEvent -> {
-                                    //                  logger.info("buttom getText {}", answer1.getText());
                                     if (answer1.getText().equals(qres)) {
                                         if (cache.quizSession.asMap().containsValue(res.getRespId())) {
                                             long getCurrentTime = System.currentTimeMillis();
@@ -231,7 +229,6 @@ public class Magic extends VerticalLayout {
                                 });
 
                                 answer2.addClickListener(buttonClickEvent -> {
-                                    //                logger.info("buttom getText {}", answer2.getText());
                                     if (answer2.getText().equals(qres)) {
                                         if (cache.quizSession.asMap().containsValue(res.getRespId())) {
                                             long getCurrentTime = System.currentTimeMillis();

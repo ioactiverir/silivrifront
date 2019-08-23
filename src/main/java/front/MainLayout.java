@@ -37,7 +37,7 @@ import front.ReviewsList;
  * child views below that.
  */
 @HtmlImport("frontend://styles/shared-styles.html")
-@PWA(name = "Beverage Buddy", shortName = "BevBuddy")
+@PWA(name = "Beverage Buddy", shortName = "BevBuddy",offlineResources = {"offTheLine.js"})
 @Viewport("width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes")
 public class MainLayout extends Div
         implements RouterLayout, PageConfigurator {

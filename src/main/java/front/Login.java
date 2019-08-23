@@ -59,7 +59,7 @@ public class Login extends VerticalLayout {
         phoneNumber.setWidth("75%");
         formLayout.addFormItem(phoneNumber, "");
         formLayout.addFormItem(sendCode, "");
-
+        formLayout.addClassName("main-layout");
         add(header, formLayout);
         sendCode.addClickListener(buttonClickEvent -> {
             //todo regx that validate phone number
